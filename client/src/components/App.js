@@ -5,10 +5,12 @@ import CreateWorkout from "./workoutApp/CreateWorkout";
 import DeleteWorkout from "./workoutApp/DeleteWorkout";
 import ReadWorkout from "./workoutApp/ReadWorkout";
 import UpdateWorkout from "./workoutApp/UpdateWorkout";
+import Navbar from "../components/workoutApp/Navbar";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <div>
         <Route exact path="/" component={ReadWorkout} />
         <Route exact path="/create" component={CreateWorkout} />
