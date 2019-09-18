@@ -1,0 +1,28 @@
+{
+  "workouts": [
+    {
+      "id": 1,
+      "type": "Swim",
+      "description": "Ladders",
+      "time": "00:51:00",
+      "distance": "2500 m",
+      "date": "09/02/2019"
+    },
+    {
+      "id": 2,
+      "type": "Bike",
+      "description": "Cruise",
+      "time": "00:30:00",
+      "distance": "10 mi",
+      "date": "09/03/2019"
+    },
+    {
+      "id": 3,
+      "type": "Run",
+      "description": "Intervals",
+      "time": "00:45:00",
+      "distance": "5.5 mi",
+      "date": "09/04/2019"
+    }
+  ]
+}
