@@ -22,7 +22,7 @@ class WorkoutList extends Component {
             <h5 className="card-title">{workout.description}</h5>
             <h6 className="card-title">{workout.date}</h6>
             <h6 className="card-subtitle">Type: {workout.type}</h6>
-            <p className="card-text">Time: {workout.time}</p>
+            <p className="card-text">Time: {workout.duration}</p>
             <p className="card-text">Distance: {workout.distance}</p>
             <button className="btn btn-primary">Update</button>
             <button className="btn btn-danger">Delete</button>
