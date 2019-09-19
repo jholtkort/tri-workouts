@@ -25,28 +25,12 @@
       "date": "09/04/2019"
     },
     {
-      "description": "new",
-      "date": "new",
-      "type": "new",
-      "duration": "new",
-      "distance": "new",
-      "id": 4
-    },
-    {
       "description": "Intervals again",
       "date": "09/18/2019",
       "type": "Swim",
       "duration": "00:45:00",
       "distance": "2500 m",
       "id": 5
-    },
-    {
-      "description": "a",
-      "date": "2019-09-18",
-      "type": "",
-      "duration": "01:01",
-      "distance": "2500 m",
-      "id": 6
     }
   ]
 }

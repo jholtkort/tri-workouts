@@ -2,16 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class CreateWorkout extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      description: "",
-      date: "",
-      type: "",
-      duration: "",
-      distance: ""
-    };
-  }
+  state = {
+    description: "",
+    date: "",
+    type: "",
+    duration: "",
+    distance: ""
+  };
 
   handleDescriptionChange = event => {
     this.setState({ description: event.target.value });
