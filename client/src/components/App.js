@@ -6,7 +6,7 @@ import WorkoutList from "./workoutApp/WorkoutList";
 import UpdateWorkout from "./workoutApp/UpdateWorkout";
 import Navbar from "../components/workoutApp/Navbar";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />
@@ -17,6 +17,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

@@ -1,14 +1,6 @@
 {
   "workouts": [
     {
-      "id": 1,
-      "type": "Swim",
-      "description": "Ladders",
-      "duration": "00:51:00",
-      "distance": "2500 m",
-      "date": "09/02/2019"
-    },
-    {
       "id": 2,
       "type": "Bike",
       "description": "Cruise",
@@ -31,6 +23,14 @@
       "duration": "00:45:00",
       "distance": "2500 m",
       "id": 5
+    },
+    {
+      "description": "a",
+      "date": "",
+      "type": "",
+      "duration": "",
+      "distance": "",
+      "id": 6
     }
   ]
 }

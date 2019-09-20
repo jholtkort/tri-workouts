@@ -7,14 +7,11 @@ class Workout extends Component {
     axios
       .delete(`http://localhost:4000/workouts/${this.props.workout.id}`)
       .then(res => {
-        console.log(res);
-
         this.setState({ state: this.state });
       });
   };
 
   render() {
-    console.log(this.props.workout);
     return (
       <div className="card">
         <div className="card-body">
@@ -23,10 +20,7 @@ class Workout extends Component {
           <h6 className="card-subtitle">Type: {this.props.workout.type}</h6>
           <p className="card-text">Time: {this.props.workout.duration}</p>
           <p className="card-text">Distance: {this.props.workout.distance}</p>
-          <button
-            onClick={() => this.handleUpdateClick(this.props.id)}
-            className="btn btn-primary"
-          >
+          <button className="btn btn-primary">
             <Link to={`/update/${this.props.workout.id}`}>Update</Link>
           </button>
           <button
