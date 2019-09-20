@@ -1,36 +1,12 @@
 {
   "workouts": [
     {
-      "id": 2,
-      "type": "Bike",
-      "description": "Cruise",
-      "duration": "00:30:00",
-      "distance": "10 mi",
-      "date": "09/03/2019"
-    },
-    {
-      "id": 3,
-      "type": "Run",
-      "description": "Intervals",
-      "duration": "00:45:00",
-      "distance": "5.5 mi",
-      "date": "09/04/2019"
-    },
-    {
-      "description": "Intervals again",
-      "date": "09/18/2019",
+      "description": "Ladders",
+      "date": "2019-09-20",
       "type": "Swim",
-      "duration": "00:45:00",
+      "duration": "06:55",
       "distance": "2500 m",
-      "id": 5
-    },
-    {
-      "description": "a",
-      "date": "",
-      "type": "",
-      "duration": "",
-      "distance": "",
-      "id": 6
+      "id": 1
     }
   ]
 }

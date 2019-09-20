@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import WorkoutForm from "./WorkoutForm";
 
@@ -14,6 +15,7 @@ class UpdateWorkout extends Component {
   };
 
   componentDidMount = () => {
+    this._isMounted = true;
     axios
       .get(`http://localhost:4000/workouts/${this.props.match.params.id}`)
       .then(res => {
@@ -28,7 +30,7 @@ class UpdateWorkout extends Component {
           distance: res.data.distance
         });
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
       });
   };
@@ -53,28 +55,31 @@ class UpdateWorkout extends Component {
     this.setState({ distance: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     const { id, description, date, type, duration, distance } = this.state;
 
-    axios
-      .put(`http://localhost:4000/workouts/${this.props.match.params.id}`, {
+    await axios.put(
+      `http://localhost:4000/workouts/${this.props.match.params.id}`,
+      {
         id,
         description,
         date,
         type,
         duration,
         distance
-      })
-      .then(res => {
-        console.log(res);
-      });
+      }
+    );
 
     this.props.history.push("/");
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div>
         <WorkoutForm
@@ -91,7 +96,6 @@ class UpdateWorkout extends Component {
           handleDurationChange={this.handleDurationChange}
           handleDistanceChange={this.handleDistanceChange}
         />
-        ;
       </div>
     );
   }

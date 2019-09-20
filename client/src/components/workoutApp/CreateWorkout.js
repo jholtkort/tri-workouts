@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import WorkoutForm from "./WorkoutForm";
 
@@ -9,7 +10,8 @@ class CreateWorkout extends Component {
     date: "",
     type: "",
     duration: "",
-    distance: ""
+    distance: "",
+    redirect: false
   };
 
   handleDescriptionChange = event => {
@@ -32,12 +34,12 @@ class CreateWorkout extends Component {
     this.setState({ distance: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     const { description, date, type, duration, distance } = this.state;
 
-    axios
+    await axios
       .post("http://localhost:4000/workouts", {
         description,
         date,
@@ -45,21 +47,18 @@ class CreateWorkout extends Component {
         duration,
         distance
       })
-      .then(res => {
-        console.log(res);
-        this.setState({
-          description: "",
-          date: "",
-          type: "",
-          duration: "",
-          distance: ""
-        });
+      .then(() => {
+        this.setState({ redirect: true });
       });
 
     this.props.history.push("/");
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div>
         <WorkoutForm
