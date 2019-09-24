@@ -10,42 +10,52 @@ class CreateWorkout extends Component {
     date: "",
     type: "",
     time: "",
-    distance: "",
     duration: "",
     distanceUnits: "",
+    hour: "",
+    minute: "",
+    second: "",
     redirect: false
   };
 
-  handleDescriptionChange = event => {
-    this.setState({ description: event.target.value });
+  handleDescriptionChange = e => {
+    this.setState({ description: e.target.value });
   };
 
-  handleDateChange = event => {
-    this.setState({ date: event.target.value });
+  handleDateChange = e => {
+    this.setState({ date: e.target.value });
   };
 
-  handleTypeChange = event => {
-    this.setState({ type: event.target.value });
+  handleTypeChange = e => {
+    this.setState({ type: e.target.value });
   };
 
-  handleTimeChange = event => {
-    this.setState({ time: event.target.value });
+  handleTimeChange = e => {
+    this.setState({ time: e.target.value });
   };
 
-  handleDistanceChange = event => {
-    this.setState({ distance: event.target.value });
+  handleDistanceChange = e => {
+    this.setState({ distance: e.target.value });
   };
 
-  handleDistanceUnitsChange = event => {
-    this.setState({ distanceUnits: event.target.value });
+  handleDistanceUnitsChange = e => {
+    this.setState({ distanceUnits: e.target.value });
   };
 
-  handleDurationChange = event => {
-    this.setState({ duration: event.target.value });
+  handleHourChange = e => {
+    this.setState({ hour: e.target.value });
   };
 
-  handleSubmit = async event => {
-    event.preventDefault();
+  handleMinuteChange = e => {
+    this.setState({ minute: e.target.value });
+  };
+
+  handleSecondChange = e => {
+    this.setState({ second: e.target.value });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
 
     const {
       description,
@@ -53,8 +63,10 @@ class CreateWorkout extends Component {
       type,
       time,
       distance,
-      duration,
-      distanceUnits
+      distanceUnits,
+      hour,
+      minute,
+      second
     } = this.state;
 
     await axios
@@ -65,7 +77,9 @@ class CreateWorkout extends Component {
         time,
         distance,
         distanceUnits,
-        duration
+        hour,
+        minute,
+        second
       })
       .then(() => {
         this.setState({ redirect: true });
@@ -89,7 +103,9 @@ class CreateWorkout extends Component {
           time={this.state.time}
           distance={this.state.distance}
           distanceUnits={this.state.distanceUnits}
-          duration={this.state.duration}
+          hour={this.state.hour}
+          minute={this.state.minute}
+          second={this.state.second}
           handleSubmit={this.handleSubmit}
           handleDescriptionChange={this.handleDescriptionChange}
           handleDateChange={this.handleDateChange}
@@ -97,7 +113,9 @@ class CreateWorkout extends Component {
           handleTimeChange={this.handleTimeChange}
           handleDistanceChange={this.handleDistanceChange}
           handleDistanceUnitsChange={this.handleDistanceUnitsChange}
-          handleDurationChange={this.handleDurationChange}
+          handleHourChange={this.handleHourChange}
+          handleMinuteChange={this.handleMinuteChange}
+          handleSecondChange={this.handleSecondChange}
         />
         ;
       </div>

@@ -15,21 +15,24 @@ const Workout = props => {
           {props.workout.date} at {props.workout.time}
         </h6>
         <h6 className="card-text">
-          <ul className="workout-stats">
-            <li className="mr-3">{props.workout.type}</li>
-            <li className="mr-3">
+          <div className="workout-stats">
+            <li className="pr-3 mr-3">{props.workout.type}</li>
+            <li className="pr-3 mr-3">
               {props.workout.distance} {props.workout.distanceUnits}
             </li>
-            <li className="mr-3">{props.workout.duration}</li>
-          </ul>
+            <li className="mr-3">
+              {props.workout.hour} hr {props.workout.minute} min{" "}
+              {props.workout.second} sec
+            </li>
+          </div>
         </h6>
 
-        <button
+        {/* <button
           onClick={() => props.handleDeleteClick(props.workout.id)}
           className="btn btn-danger"
         >
           Delete
-        </button>
+        </button> */}
       </div>
     </div>
   );

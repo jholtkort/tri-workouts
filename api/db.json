@@ -1,13 +1,3 @@
 {
-  "workouts": [
-    {
-      "id": 3,
-      "description": "Ladders",
-      "date": "1920-09-01",
-      "type": "Bike",
-      "time": "01:00",
-      "distance": "254 mi",
-      "duration": "00:51:00"
-    }
-  ]
+  "workouts": []
 }

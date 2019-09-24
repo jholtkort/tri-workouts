@@ -13,7 +13,9 @@ class UpdateWorkout extends Component {
     time: "",
     distance: "",
     distanceUnits: "",
-    duration: ""
+    hour: "",
+    minute: "",
+    second: ""
   };
 
   componentDidMount = () => {
@@ -31,7 +33,9 @@ class UpdateWorkout extends Component {
           time: res.data.time,
           distance: res.data.distance,
           distanceUnits: res.data.distanceUnits,
-          duration: res.data.duration
+          hour: res.data.hour,
+          minute: res.data.minute,
+          second: res.data.second
         });
       })
       .catch(error => {
@@ -63,8 +67,16 @@ class UpdateWorkout extends Component {
     this.setState({ distanceUnits: e.target.value });
   };
 
-  handleDurationChange = e => {
-    this.setState({ duration: e.target.value });
+  handleHourChange = e => {
+    this.setState({ hour: e.target.value });
+  };
+
+  handleMinuteChange = e => {
+    this.setState({ minute: e.target.value });
+  };
+
+  handleSecondChange = e => {
+    this.setState({ second: e.target.value });
   };
 
   handleSubmit = async e => {
@@ -78,7 +90,9 @@ class UpdateWorkout extends Component {
       time,
       distance,
       distanceUnits,
-      duration
+      hour,
+      minute,
+      second
     } = this.state;
 
     await axios.put(
@@ -91,9 +105,26 @@ class UpdateWorkout extends Component {
         time,
         distance,
         distanceUnits,
-        duration
+        hour,
+        minute,
+        second
       }
     );
+
+    this.props.history.push("/");
+  };
+
+  handleDeleteClick = async id => {
+    await axios.delete(`http://localhost:4000/workouts/${id}`);
+
+    await axios
+      .get("http://localhost:4000/workouts")
+      .then(res => {
+        this.setState({ workouts: res.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
     this.props.history.push("/");
   };
@@ -107,21 +138,27 @@ class UpdateWorkout extends Component {
       <div>
         <WorkoutForm
           title="Update Workout"
+          id={this.state.id}
           description={this.state.description}
           date={this.state.date}
           type={this.state.type}
           time={this.state.time}
           distance={this.state.distance}
           distanceUnits={this.state.distanceUnits}
-          duration={this.state.duration}
+          hour={this.state.hour}
+          minute={this.state.minute}
+          second={this.state.second}
           handleSubmit={this.handleSubmit}
           handleDescriptionChange={this.handleDescriptionChange}
           handleDateChange={this.handleDateChange}
           handleTypeChange={this.handleTypeChange}
           handleTimeChange={this.handleTimeChange}
-          handleDurationChange={this.handleDurationChange}
           handleDistanceChange={this.handleDistanceChange}
           handleDistanceUnitsChange={this.handleDistanceUnitsChange}
+          handleHourChange={this.handleHourChange}
+          handleMinuteChange={this.handleMinuteChange}
+          handleSecondChange={this.handleSecondChange}
+          handleDeleteClick={this.handleDeleteClick}
         />
       </div>
     );

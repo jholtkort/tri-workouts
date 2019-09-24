@@ -1,6 +1,18 @@
 import React from "react";
 
 const WorkoutForm = props => {
+  let button = null;
+
+  if (props.title === "Update Workout") {
+    button = (
+      <button
+        onClick={() => props.handleDeleteClick(props.id)}
+        className="btn btn-danger"
+      >
+        Delete
+      </button>
+    );
+  }
   return (
     <div className="mx-5">
       <h1>{props.title}</h1>
@@ -90,17 +102,52 @@ const WorkoutForm = props => {
 
         <div className="form-group">
           <label htmlFor="duration">Duration:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="duration"
-            value={props.duration}
-            onChange={props.handleDurationChange}
-            required
-          />
+
+          <div className="row">
+            <div className="col">
+              <input
+                type="number"
+                className="form-control"
+                min="0"
+                max="99"
+                id="duration"
+                value={props.hour}
+                onChange={props.handleHourChange}
+                required
+              />{" "}
+              hr
+            </div>
+            <div className="col">
+              <input
+                type="number"
+                className="form-control"
+                min="0"
+                max="99"
+                id="duration"
+                value={props.minute}
+                onChange={props.handleMinuteChange}
+                required
+              />{" "}
+              min
+            </div>
+            <div className="col">
+              <input
+                type="number"
+                className="form-control"
+                min="0"
+                max="99"
+                id="duration"
+                value={props.second}
+                onChange={props.handleSecondChange}
+                required
+              />{" "}
+              sec
+            </div>
+          </div>
         </div>
 
         <button type="submit">Submit</button>
+        {button}
       </form>
     </div>
   );
