@@ -1,20 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Workout.css";
 
 const Workout = props => {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{props.workout.description}</h5>
-        <h6 className="card-title">{props.workout.date}</h6>
-        <h6 className="card-subtitle">Type: {props.workout.type}</h6>
-        <p className="card-text">Time: {props.workout.time}</p>
-        <p className="card-text">Distance: {props.workout.distance}</p>
-        <button className="btn btn-primary">
-          <Link to={`/update/${props.workout.id}`} className="btn btn-primary">
-            Update
+        <h5 className="card-title">
+          <Link to={`/update/${props.workout.id}`} id="workout-title">
+            {props.workout.description}
           </Link>
-        </button>
+        </h5>
+        <h6 className="card-subtitle mb-2 text-muted">
+          {props.workout.date} at {props.workout.time}
+        </h6>
+        <h6 className="card-text">
+          <ul className="workout-stats">
+            <li className="mr-3">{props.workout.type}</li>
+            <li className="mr-3">
+              {props.workout.distance} {props.workout.distanceUnits}
+            </li>
+            <li className="mr-3">{props.workout.duration}</li>
+          </ul>
+        </h6>
+
         <button
           onClick={() => props.handleDeleteClick(props.workout.id)}
           className="btn btn-danger"

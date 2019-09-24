@@ -11,7 +11,9 @@ class UpdateWorkout extends Component {
     date: "",
     type: "",
     time: "",
-    distance: ""
+    distance: "",
+    distanceUnits: "",
+    duration: ""
   };
 
   componentDidMount = () => {
@@ -27,7 +29,9 @@ class UpdateWorkout extends Component {
           date: res.data.date,
           type: res.data.type,
           time: res.data.time,
-          distance: res.data.distance
+          distance: res.data.distance,
+          distanceUnits: res.data.distanceUnits,
+          duration: res.data.duration
         });
       })
       .catch(error => {
@@ -55,10 +59,27 @@ class UpdateWorkout extends Component {
     this.setState({ distance: e.target.value });
   };
 
+  handleDistanceUnitsChange = e => {
+    this.setState({ distanceUnits: e.target.value });
+  };
+
+  handleDurationChange = e => {
+    this.setState({ duration: e.target.value });
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
 
-    const { id, description, date, type, time, distance } = this.state;
+    const {
+      id,
+      description,
+      date,
+      type,
+      time,
+      distance,
+      distanceUnits,
+      duration
+    } = this.state;
 
     await axios.put(
       `http://localhost:4000/workouts/${this.props.match.params.id}`,
@@ -68,7 +89,9 @@ class UpdateWorkout extends Component {
         date,
         type,
         time,
-        distance
+        distance,
+        distanceUnits,
+        duration
       }
     );
 
@@ -89,12 +112,16 @@ class UpdateWorkout extends Component {
           type={this.state.type}
           time={this.state.time}
           distance={this.state.distance}
+          distanceUnits={this.state.distanceUnits}
+          duration={this.state.duration}
           handleSubmit={this.handleSubmit}
           handleDescriptionChange={this.handleDescriptionChange}
           handleDateChange={this.handleDateChange}
           handleTypeChange={this.handleTypeChange}
           handleTimeChange={this.handleTimeChange}
+          handleDurationChange={this.handleDurationChange}
           handleDistanceChange={this.handleDistanceChange}
+          handleDistanceUnitsChange={this.handleDistanceUnitsChange}
         />
       </div>
     );

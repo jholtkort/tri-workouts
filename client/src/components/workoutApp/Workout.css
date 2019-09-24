@@ -1,0 +1,13 @@
+#workout-title {
+  color: black;
+}
+
+.workout-stats li {
+  display: inline;
+  margin-right: 10px;
+  border-right: 1px solid black;
+}
+
+.workout-stats li:last-child {
+  border-right: none;
+}

@@ -11,6 +11,8 @@ class CreateWorkout extends Component {
     type: "",
     time: "",
     distance: "",
+    duration: "",
+    distanceUnits: "",
     redirect: false
   };
 
@@ -34,10 +36,26 @@ class CreateWorkout extends Component {
     this.setState({ distance: event.target.value });
   };
 
+  handleDistanceUnitsChange = event => {
+    this.setState({ distanceUnits: event.target.value });
+  };
+
+  handleDurationChange = event => {
+    this.setState({ duration: event.target.value });
+  };
+
   handleSubmit = async event => {
     event.preventDefault();
 
-    const { description, date, type, time, distance } = this.state;
+    const {
+      description,
+      date,
+      type,
+      time,
+      distance,
+      duration,
+      distanceUnits
+    } = this.state;
 
     await axios
       .post("http://localhost:4000/workouts", {
@@ -45,7 +63,9 @@ class CreateWorkout extends Component {
         date,
         type,
         time,
-        distance
+        distance,
+        distanceUnits,
+        duration
       })
       .then(() => {
         this.setState({ redirect: true });
@@ -68,12 +88,16 @@ class CreateWorkout extends Component {
           type={this.state.type}
           time={this.state.time}
           distance={this.state.distance}
+          distanceUnits={this.state.distanceUnits}
+          duration={this.state.duration}
           handleSubmit={this.handleSubmit}
           handleDescriptionChange={this.handleDescriptionChange}
           handleDateChange={this.handleDateChange}
           handleTypeChange={this.handleTypeChange}
           handleTimeChange={this.handleTimeChange}
           handleDistanceChange={this.handleDistanceChange}
+          handleDistanceUnitsChange={this.handleDistanceUnitsChange}
+          handleDurationChange={this.handleDurationChange}
         />
         ;
       </div>
