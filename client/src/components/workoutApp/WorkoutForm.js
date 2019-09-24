@@ -43,13 +43,13 @@ const WorkoutForm = props => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="duration">Duration:</label>
+          <label htmlFor="time">Time:</label>
           <input
             type="time"
             className="form-control"
-            id="duration"
-            value={props.duration}
-            onChange={props.handleDurationChange}
+            id="time"
+            value={props.time}
+            onChange={props.handleTimeChange}
           />
         </div>
 

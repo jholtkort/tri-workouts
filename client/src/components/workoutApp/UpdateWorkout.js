@@ -10,7 +10,7 @@ class UpdateWorkout extends Component {
     description: "",
     date: "",
     type: "",
-    duration: "",
+    time: "",
     distance: ""
   };
 
@@ -26,7 +26,7 @@ class UpdateWorkout extends Component {
           description: res.data.description,
           date: res.data.date,
           type: res.data.type,
-          duration: res.data.duration,
+          time: res.data.time,
           distance: res.data.distance
         });
       })
@@ -47,8 +47,8 @@ class UpdateWorkout extends Component {
     this.setState({ type: e.target.value });
   };
 
-  handleDurationChange = e => {
-    this.setState({ duration: e.target.value });
+  handleTimeChange = e => {
+    this.setState({ time: e.target.value });
   };
 
   handleDistanceChange = e => {
@@ -58,7 +58,7 @@ class UpdateWorkout extends Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    const { id, description, date, type, duration, distance } = this.state;
+    const { id, description, date, type, time, distance } = this.state;
 
     await axios.put(
       `http://localhost:4000/workouts/${this.props.match.params.id}`,
@@ -67,7 +67,7 @@ class UpdateWorkout extends Component {
         description,
         date,
         type,
-        duration,
+        time,
         distance
       }
     );
@@ -87,13 +87,13 @@ class UpdateWorkout extends Component {
           description={this.state.description}
           date={this.state.date}
           type={this.state.type}
-          duration={this.state.duration}
+          time={this.state.time}
           distance={this.state.distance}
           handleSubmit={this.handleSubmit}
           handleDescriptionChange={this.handleDescriptionChange}
           handleDateChange={this.handleDateChange}
           handleTypeChange={this.handleTypeChange}
-          handleDurationChange={this.handleDurationChange}
+          handleTimeChange={this.handleTimeChange}
           handleDistanceChange={this.handleDistanceChange}
         />
       </div>
