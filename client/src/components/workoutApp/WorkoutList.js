@@ -45,18 +45,20 @@ class WorkoutList extends Component {
 
   render() {
     if (!this.state.workouts.length && !this.state.loaded) {
-      return <div>Loading...</div>;
+      return <div className="container mt-3">Loading...</div>;
     }
 
     if (!this.state.workouts.length && this.state.loaded) {
       return (
-        <div>
-          <Link to="/create">Please add workouts</Link>
+        <div className="container mt-3">
+          <h3>
+            <Link to="/create">Hello, please add workouts</Link>
+          </h3>
         </div>
       );
     }
 
-    return <div>{this.renderWorkouts()}</div>;
+    return <div className="container mt-3">{this.renderWorkouts()}</div>;
   }
 }
 

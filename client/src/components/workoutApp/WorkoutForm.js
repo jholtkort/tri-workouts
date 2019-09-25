@@ -7,7 +7,7 @@ const WorkoutForm = props => {
     button = (
       <button
         onClick={() => props.handleDeleteClick(props.id)}
-        className="btn btn-danger"
+        className="btn btn-danger ml-3"
       >
         Delete
       </button>
@@ -146,7 +146,9 @@ const WorkoutForm = props => {
           </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
         {button}
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
 
 import CreateWorkout from "./workoutApp/CreateWorkout";
 import WorkoutList from "./workoutApp/WorkoutList";
@@ -10,7 +11,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <div>
+      <div className="main-app">
         <Route exact path="/" component={WorkoutList} />
         <Route exact path="/create" component={CreateWorkout} />
         <Route exact path="/update/:id" component={UpdateWorkout} />
