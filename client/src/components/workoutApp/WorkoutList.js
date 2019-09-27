@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import Workout from "./Workout";
+import workoutAPI from "../../api/workoutAPI";
 
 class WorkoutList extends Component {
   state = { workouts: [], loaded: false };
 
   componentDidMount = async () => {
-    await axios
-      .get("http://localhost:4000/workouts")
+    await workoutAPI
+      .get("/workouts")
       .then(res => {
         this.setState({ workouts: res.data, loaded: true });
       })
@@ -19,10 +19,10 @@ class WorkoutList extends Component {
   };
 
   handleDeleteClick = async id => {
-    await axios.delete(`http://localhost:4000/workouts/${id}`);
+    await workoutAPI.delete(`/workouts/${id}`);
 
-    await axios
-      .get("http://localhost:4000/workouts")
+    await workoutAPI
+      .get("/workouts")
       .then(res => {
         this.setState({ workouts: res.data });
       })

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 import WorkoutForm from "./WorkoutForm";
+import workoutAPI from "../../api/workoutAPI";
 
 class UpdateWorkout extends Component {
   state = {
@@ -20,8 +20,8 @@ class UpdateWorkout extends Component {
 
   componentDidMount = () => {
     this._isMounted = true;
-    axios
-      .get(`http://localhost:4000/workouts/${this.props.match.params.id}`)
+    workoutAPI
+      .get(`/workouts/${this.props.match.params.id}`)
       .then(res => {
         console.log(res);
 
@@ -95,30 +95,27 @@ class UpdateWorkout extends Component {
       second
     } = this.state;
 
-    await axios.put(
-      `http://localhost:4000/workouts/${this.props.match.params.id}`,
-      {
-        id,
-        description,
-        date,
-        type,
-        time,
-        distance,
-        distanceUnits,
-        hour,
-        minute,
-        second
-      }
-    );
+    await workoutAPI.put(`/workouts/${this.props.match.params.id}`, {
+      id,
+      description,
+      date,
+      type,
+      time,
+      distance,
+      distanceUnits,
+      hour,
+      minute,
+      second
+    });
 
     this.props.history.push("/");
   };
 
   handleDeleteClick = async id => {
-    await axios.delete(`http://localhost:4000/workouts/${id}`);
+    await workoutAPI.delete(`/workouts/${id}`);
 
-    await axios
-      .get("http://localhost:4000/workouts")
+    await workoutAPI
+      .get("/workouts")
       .then(res => {
         this.setState({ workouts: res.data });
       })

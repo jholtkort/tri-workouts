@@ -1,3 +1,16 @@
 {
-  "workouts": []
+  "workouts": [
+    {
+      "description": "Ladders",
+      "date": "2019-09-27",
+      "type": "Swim",
+      "time": "01:01",
+      "distance": "1",
+      "distanceUnits": "mi",
+      "hour": "1",
+      "minute": "00",
+      "second": "0",
+      "id": 1
+    }
+  ]
 }

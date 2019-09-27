@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 import WorkoutForm from "./WorkoutForm";
+import workoutAPI from "../../api/workoutAPI";
 
 class CreateWorkout extends Component {
   state = {
@@ -10,7 +10,7 @@ class CreateWorkout extends Component {
     date: "",
     type: "",
     time: "",
-    duration: "",
+    distance: "",
     distanceUnits: "",
     hour: "",
     minute: "",
@@ -69,8 +69,8 @@ class CreateWorkout extends Component {
       second
     } = this.state;
 
-    await axios
-      .post("http://localhost:4000/workouts", {
+    await workoutAPI
+      .post("/workouts", {
         description,
         date,
         type,
