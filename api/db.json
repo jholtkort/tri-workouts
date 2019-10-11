@@ -2,13 +2,13 @@
   "workouts": [
     {
       "description": "Ladders",
-      "date": "2019-09-27",
+      "date": "2019-10-11",
       "type": "Swim",
       "time": "01:01",
-      "distance": "1",
+      "distance": "10",
       "distanceUnits": "mi",
       "hour": "1",
-      "minute": "00",
+      "minute": "0",
       "second": "0",
       "id": 1
     }

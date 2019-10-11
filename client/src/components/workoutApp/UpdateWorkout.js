@@ -23,8 +23,6 @@ class UpdateWorkout extends Component {
     workoutAPI
       .get(`/workouts/${this.props.match.params.id}`)
       .then(res => {
-        console.log(res);
-
         this.setState({
           id: res.data.id,
           description: res.data.description,
@@ -113,15 +111,6 @@ class UpdateWorkout extends Component {
 
   handleDeleteClick = async id => {
     await workoutAPI.delete(`/workouts/${id}`);
-
-    await workoutAPI
-      .get("/workouts")
-      .then(res => {
-        this.setState({ workouts: res.data });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
 
     this.props.history.push("/");
   };

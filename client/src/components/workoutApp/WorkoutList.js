@@ -9,22 +9,9 @@ class WorkoutList extends Component {
 
   componentDidMount = async () => {
     await workoutAPI
-      .get("/workouts")
+      .get("/workouts?_sort=date&_order=desc")
       .then(res => {
         this.setState({ workouts: res.data, loaded: true });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
-
-  handleDeleteClick = async id => {
-    await workoutAPI.delete(`/workouts/${id}`);
-
-    await workoutAPI
-      .get("/workouts")
-      .then(res => {
-        this.setState({ workouts: res.data });
       })
       .catch(function(error) {
         console.log(error);
