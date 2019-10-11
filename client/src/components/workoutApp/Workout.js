@@ -18,17 +18,15 @@ const Workout = props => {
           {props.workout.date} at {props.workout.time}
         </CardSubtitle>
 
-        <CardText>
-          <div className="workout-stats">
-            <li className="pr-3 mr-3">{props.workout.type}</li>
-            <li className="pr-3 mr-3">
-              {props.workout.distance} {props.workout.distanceUnits}
-            </li>
-            <li className="mr-3">
-              {props.workout.hour} hr {props.workout.minute} min{" "}
-              {props.workout.second} sec
-            </li>
-          </div>
+        <CardText className="workout-stats">
+          <li className="pr-3 mr-3">{props.workout.type}</li>
+          <li className="pr-3 mr-3">
+            {props.workout.distance} {props.workout.distanceUnits}
+          </li>
+          <li className="mr-3">
+            {props.workout.hour} hr {props.workout.minute} min{" "}
+            {props.workout.second} sec
+          </li>
         </CardText>
       </CardBody>
     </Card>

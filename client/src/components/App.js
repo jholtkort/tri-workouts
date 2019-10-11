@@ -5,11 +5,11 @@ import "./App.css";
 import CreateWorkout from "./workoutApp/CreateWorkout";
 import WorkoutList from "./workoutApp/WorkoutList";
 import UpdateWorkout from "./workoutApp/UpdateWorkout";
-import Navbar from "../components/workoutApp/Navbar";
+import Navbar from "./workoutApp/Navbar";
 
 const App = () => {
   return (
-    <Router>
+    <Router className="test">
       <Navbar />
       <div className="main-app">
         <Route exact path="/" component={WorkoutList} />
