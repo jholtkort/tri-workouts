@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Container } from "reactstrap";
 
 import Workout from "./Workout";
 import workoutAPI from "../../api/workoutAPI";
@@ -32,20 +33,20 @@ class WorkoutList extends Component {
 
   render() {
     if (!this.state.workouts.length && !this.state.loaded) {
-      return <div className="container mt-3">Loading...</div>;
+      return <Container className="mt-3">Loading...</Container>;
     }
 
     if (!this.state.workouts.length && this.state.loaded) {
       return (
-        <div className="container mt-3">
+        <Container className="mt-3">
           <h3>
             <Link to="/create">Hello, please add workouts</Link>
           </h3>
-        </div>
+        </Container>
       );
     }
 
-    return <div className="container mt-3">{this.renderWorkouts()}</div>;
+    return <Container className="mt-3">{this.renderWorkouts()}</Container>;
   }
 }
 

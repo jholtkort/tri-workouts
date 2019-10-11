@@ -1,37 +1,39 @@
 import React from "react";
+import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const WorkoutForm = props => {
   let button = null;
 
   if (props.title === "Update Workout") {
     button = (
-      <button
+      <Button
         onClick={() => props.handleDeleteClick(props.id)}
-        className="btn btn-danger ml-3"
+        color="danger"
+        className="ml-2"
       >
         Delete
-      </button>
+      </Button>
     );
   }
   return (
     <div className="mx-5">
       <h1>{props.title}</h1>
-      <form onSubmit={props.handleSubmit} className="mb-5">
-        <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <input
+      <Form onSubmit={props.handleSubmit} className="mb-5">
+        <FormGroup>
+          <Label for="description">Description:</Label>
+          <Input
             type="text"
-            className="form-control"
             id="description"
             value={props.description}
             onChange={props.handleDescriptionChange}
             required
           />
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="type">Type:</label>
-          <select
+        <FormGroup>
+          <Label for="type">Type:</Label>
+          <Input
+            type="select"
             value={props.type}
             onChange={props.handleTypeChange}
             id="type"
@@ -42,12 +44,12 @@ const WorkoutForm = props => {
             <option value="Swim">Swim</option>
             <option value="Bike">Bike</option>
             <option value="Run">Run</option>
-          </select>
-        </div>
+          </Input>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="date">Date:</label>
-          <input
+        <FormGroup>
+          <Label for="date">Date:</Label>
+          <Input
             type="date"
             className="form-control"
             id="date"
@@ -55,11 +57,11 @@ const WorkoutForm = props => {
             onChange={props.handleDateChange}
             required
           />
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="time">Time:</label>
-          <input
+        <FormGroup>
+          <Label for="time">Time:</Label>
+          <Input
             type="time"
             className="form-control"
             id="time"
@@ -67,13 +69,13 @@ const WorkoutForm = props => {
             onChange={props.handleTimeChange}
             required
           />
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="distance">Distance:</label>
-          <div className="row">
-            <div className="col">
-              <input
+        <FormGroup>
+          <Label for="distance">Distance:</Label>
+          <Row>
+            <Col>
+              <Input
                 type="number"
                 className="form-control"
                 id="distance"
@@ -81,9 +83,10 @@ const WorkoutForm = props => {
                 onChange={props.handleDistanceChange}
                 required
               />
-            </div>
-            <div className="col">
-              <select
+            </Col>
+            <Col>
+              <Input
+                type="select"
                 value={props.distanceUnits}
                 onChange={props.handleDistanceUnitsChange}
                 id="distance"
@@ -95,17 +98,16 @@ const WorkoutForm = props => {
                 <option value="yd">yd</option>
                 <option value="km">km</option>
                 <option value="m">m</option>
-              </select>
-            </div>
-          </div>
-        </div>
+              </Input>
+            </Col>
+          </Row>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="duration">Duration:</label>
-
-          <div className="row">
-            <div className="col">
-              <input
+        <FormGroup>
+          <Label for="duration">Duration:</Label>
+          <Row>
+            <Col>
+              <Input
                 type="number"
                 className="form-control"
                 min="0"
@@ -114,11 +116,11 @@ const WorkoutForm = props => {
                 value={props.hour}
                 onChange={props.handleHourChange}
                 required
-              />{" "}
+              />
               hr
-            </div>
-            <div className="col">
-              <input
+            </Col>
+            <Col>
+              <Input
                 type="number"
                 className="form-control"
                 min="0"
@@ -129,9 +131,9 @@ const WorkoutForm = props => {
                 required
               />{" "}
               min
-            </div>
-            <div className="col">
-              <input
+            </Col>
+            <Col>
+              <Input
                 type="number"
                 className="form-control"
                 min="0"
@@ -142,15 +144,15 @@ const WorkoutForm = props => {
                 required
               />{" "}
               sec
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </FormGroup>
 
-        <button type="submit" className="btn btn-primary">
+        <Button type="submit" color="primary">
           Submit
-        </button>
+        </Button>
         {button}
-      </form>
+      </Form>
     </div>
   );
 };
