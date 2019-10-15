@@ -9,7 +9,7 @@ const WorkoutForm = props => {
       <Button
         onClick={() => props.handleDeleteClick(props.id)}
         color="danger"
-        className="ml-2"
+        className="ml-2 deleteButton"
       >
         Delete
       </Button>

@@ -27,6 +27,7 @@ describe("WorkoutForm", () => {
     handleMinuteChange = jest.fn();
     handleSecondChange = jest.fn();
     value = "test value";
+
     component = shallow(
       <WorkoutForm
         title={value}
@@ -136,4 +137,6 @@ describe("WorkoutForm", () => {
 
     expect(handleSecondChange.mock.calls.length).toBe(1);
   });
+
+  it("renders a delete button if title is 'Update Workout'", () => {});
 });

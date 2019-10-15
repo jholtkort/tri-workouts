@@ -84,8 +84,6 @@ class CreateWorkout extends Component {
       .then(() => {
         this.setState({ redirect: true });
       });
-
-    this.props.history.push("/");
   };
 
   render() {

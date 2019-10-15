@@ -34,57 +34,73 @@ describe("CreateWorkout component", () => {
     expect(component.find("WorkoutForm").exists()).toBe(true);
   });
 
-  it("updates the description state when description is changed", () => {
+  it("passes a title prop of 'Create Workout' to WorkoutForm", () => {
+    expect(component.find("WorkoutForm").prop("title")).toBe("Create Workout");
+  });
+
+  it("updates the state.description when description is changed", () => {
     prop = "description";
 
     exec();
   });
 
-  it("updates the date state when date is changed", () => {
+  it("updates the state.date when date is changed", () => {
     prop = "date";
 
     exec();
   });
 
-  it("updates the type state when type is changed", () => {
+  it("updates the state.type when type is changed", () => {
     prop = "type";
 
     exec();
   });
 
-  it("updates the time state when time is changed", () => {
+  it("updates the state.time when time is changed", () => {
     prop = "time";
 
     exec();
   });
 
-  it("updates the distance state when distance is changed", () => {
+  it("updates the state.distance when distance is changed", () => {
     prop = "distance";
 
     exec();
   });
 
-  it("updates the distanceUnits state when distanceUnits is changed", () => {
+  it("updates the state.distanceUnits when distanceUnits is changed", () => {
     prop = "distanceUnits";
 
     exec();
   });
 
-  it("updates the hour state when hour is changed", () => {
+  it("updates the state.hour when hour is changed", () => {
     prop = "hour";
 
     exec();
   });
 
-  it("updates the minute state when minute is changed", () => {
+  it("updates the state.minute when minute is changed", () => {
     prop = "minute";
 
     exec();
   });
 
-  it("updates the second state when second is changed", () => {
+  it("updates the state.second when second is changed", () => {
     prop = "second";
 
     exec();
+  });
+
+  it("should call preventDefault on empty form", () => {
+    const mockPreventDefault = jest.fn();
+
+    const mockEvent = {
+      preventDefault: mockPreventDefault
+    };
+
+    component.instance().handleSubmit(mockEvent);
+
+    expect(mockPreventDefault).toHaveBeenCalled();
   });
 });

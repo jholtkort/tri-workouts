@@ -10,6 +10,6 @@ describe("Workout Component", () => {
   });
 
   it("renders", () => {
-    expect(component.find(".test").length).toBe(1);
+    expect(component.find(".test").length).toBe(0);
   });
 });
