@@ -89,7 +89,7 @@ const WorkoutForm = props => {
                 type="select"
                 value={props.distanceUnits}
                 onChange={props.handleDistanceUnitsChange}
-                id="distance"
+                id="distanceUnits"
                 className="form-control"
                 required
               >
@@ -112,7 +112,7 @@ const WorkoutForm = props => {
                 className="form-control"
                 min="0"
                 max="99"
-                id="duration"
+                id="hour"
                 value={props.hour}
                 onChange={props.handleHourChange}
                 required
@@ -125,7 +125,7 @@ const WorkoutForm = props => {
                 className="form-control"
                 min="0"
                 max="99"
-                id="duration"
+                id="minute"
                 value={props.minute}
                 onChange={props.handleMinuteChange}
                 required
@@ -138,7 +138,7 @@ const WorkoutForm = props => {
                 className="form-control"
                 min="0"
                 max="99"
-                id="duration"
+                id="second"
                 value={props.second}
                 onChange={props.handleSecondChange}
                 required
