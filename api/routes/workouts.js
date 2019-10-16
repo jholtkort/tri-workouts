@@ -1,56 +1,71 @@
 const Joi = require("@hapi/joi");
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
-const workouts = [
-  {
-    id: 1,
-    description: "a",
-    date: "2019",
-    type: "a",
-    time: "a",
-    distance: "a",
-    distanceUnits: "a",
-    hour: "a",
-    minute: "a",
-    second: "a"
+const workoutSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    minlength: 5,
+    maxlength: 255,
+    required: true
   },
-  {
-    id: 2,
-    description: "a",
-    date: "2019",
-    type: "a",
-    time: "a",
-    distance: "a",
-    distanceUnits: "a",
-    hour: "a",
-    minute: "a",
-    second: "a"
+  date: {
+    type: Date,
+    required: true
   },
-  {
-    id: 3,
-    description: "a",
-    date: "2019",
-    type: "a",
-    time: "a",
-    distance: "a",
-    distanceUnits: "a",
-    hour: "a",
-    minute: "a",
-    second: "a"
+  type: {
+    type: String,
+    enum: ["swim", "bike", "run"],
+    required: true
+  },
+  time: {
+    type: String,
+    required: true
+  },
+  distance: {
+    type: Number,
+    min: 1,
+    max: 500,
+    required: true
+  },
+  distanceUnits: {
+    type: String,
+    enum: ["mi", "yd", "km", "m"],
+    required: true
+  },
+  hour: {
+    type: Number,
+    min: 0,
+    max: 99,
+    required: true
+  },
+  minute: {
+    type: Number,
+    min: 0,
+    max: 59,
+    required: true
+  },
+  second: {
+    type: Number,
+    min: 0,
+    max: 59,
+    required: true
   }
-];
+});
 
-router.get("/", (req, res) => {
+const Workout = mongoose.model("Workout", workoutSchema);
+
+router.get("/", async (req, res) => {
+  const workouts = await Workout.find().sort("date");
   res.send(workouts);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { error } = validateWorkout(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const workout = {
-    id: workouts.length + 1,
+  let workout = new Workout({
     description: req.body.description,
     date: req.body.date,
     type: req.body.type,
@@ -60,46 +75,51 @@ router.post("/", (req, res) => {
     hour: req.body.hour,
     minute: req.body.minute,
     second: req.body.second
-  };
+  });
 
-  workouts.push(workout);
+  workout = await workout.save();
+
   res.send(workout);
 });
 
-router.put("/:id", (req, res) => {
-  const workout = workouts.find(c => c.id === parseInt(req.params.id));
-  if (!workout)
-    return res.status(404).send("The workout with the given ID was not found");
-
+router.put("/:id", async (req, res) => {
   const { error } = validateWorkout(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  workout.description = req.body.description;
-  workout.date = req.body.date;
-  workout.type = req.body.type;
-  workout.time = req.body.time;
-  workout.distance = req.body.distance;
-  workout.distanceUnits = req.body.distanceUnits;
-  workout.hour = req.body.hour;
-  workout.minute = req.body.minute;
-  workout.second = req.body.second;
+  const workout = await Workout.findByIdAndUpdate(
+    req.params.id,
+    {
+      description: req.body.description,
+      date: req.body.date,
+      type: req.body.type,
+      time: req.body.time,
+      distance: req.body.distance,
+      distanceUnits: req.body.distanceUnits,
+      hour: req.body.hour,
+      minute: req.body.minute,
+      second: req.body.second
+    },
+    { new: true }
+  );
 
-  res.send(workout);
-});
-
-router.delete("/:id", (req, res) => {
-  const workout = workouts.find(c => c.id === parseInt(req.params.id));
   if (!workout)
     return res.status(404).send("The workout with the given ID was not found");
 
-  const index = workouts.indexOf(workout);
-  workouts.splice(index, 1);
+  res.send(workout);
+});
+
+router.delete("/:id", async (req, res) => {
+  const workout = await Workout.findByIdAndRemove(req.params.id);
+
+  if (!workout)
+    return res.status(404).send("The workout with the given ID was not found");
 
   res.send(workout);
 });
 
-router.get("/:id", (req, res) => {
-  const workout = workouts.find(c => c.id === parseInt(req.params.id));
+router.get("/:id", async (req, res) => {
+  const workout = await Workout.findById(req.params.id);
+
   if (!workout)
     return res.status(404).send("The workout with the given ID was not found");
 
