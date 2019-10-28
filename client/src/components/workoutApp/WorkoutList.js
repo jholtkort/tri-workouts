@@ -10,7 +10,8 @@ class WorkoutList extends Component {
 
   componentDidMount = async () => {
     await workoutAPI
-      .get("/workouts?_sort=date&_order=desc")
+      // .get("/workouts?_sort=date&_order=desc")
+      .get("/workouts")
       .then(res => {
         this.setState({ workouts: res.data, loaded: true });
       })
@@ -24,7 +25,7 @@ class WorkoutList extends Component {
       return (
         <Workout
           workout={workout}
-          key={workout.id}
+          key={workout._id}
           handleDeleteClick={this.handleDeleteClick}
         />
       );
