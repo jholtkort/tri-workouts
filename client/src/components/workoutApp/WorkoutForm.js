@@ -25,7 +25,7 @@ const WorkoutForm = props => {
             type="text"
             id="description"
             value={props.description}
-            onChange={props.handleDescriptionChange}
+            onChange={props.handleChange}
             required
           />
         </FormGroup>
@@ -35,7 +35,7 @@ const WorkoutForm = props => {
           <Input
             type="select"
             value={props.type}
-            onChange={props.handleTypeChange}
+            onChange={props.handleChange}
             id="type"
             className="form-control"
             required
@@ -54,7 +54,7 @@ const WorkoutForm = props => {
             className="form-control"
             id="date"
             value={props.date}
-            onChange={props.handleDateChange}
+            onChange={props.handleChange}
             required
           />
         </FormGroup>
@@ -66,7 +66,7 @@ const WorkoutForm = props => {
             className="form-control"
             id="time"
             value={props.time}
-            onChange={props.handleTimeChange}
+            onChange={props.handleChange}
             required
           />
         </FormGroup>
@@ -80,7 +80,7 @@ const WorkoutForm = props => {
                 className="form-control"
                 id="distance"
                 value={props.distance}
-                onChange={props.handleDistanceChange}
+                onChange={props.handleChange}
                 required
               />
             </Col>
@@ -88,7 +88,7 @@ const WorkoutForm = props => {
               <Input
                 type="select"
                 value={props.distanceUnits}
-                onChange={props.handleDistanceUnitsChange}
+                onChange={props.handleChange}
                 id="distanceUnits"
                 className="form-control"
                 required
@@ -114,7 +114,7 @@ const WorkoutForm = props => {
                 max="99"
                 id="hour"
                 value={props.hour}
-                onChange={props.handleHourChange}
+                onChange={props.handleChange}
                 required
               />
               hr
@@ -127,7 +127,7 @@ const WorkoutForm = props => {
                 max="99"
                 id="minute"
                 value={props.minute}
-                onChange={props.handleMinuteChange}
+                onChange={props.handleChange}
                 required
               />{" "}
               min
@@ -140,7 +140,7 @@ const WorkoutForm = props => {
                 max="99"
                 id="second"
                 value={props.second}
-                onChange={props.handleSecondChange}
+                onChange={props.handleChange}
                 required
               />{" "}
               sec

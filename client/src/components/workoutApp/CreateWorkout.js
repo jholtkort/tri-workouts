@@ -18,40 +18,8 @@ class CreateWorkout extends Component {
     redirect: false
   };
 
-  handleDescriptionChange = e => {
-    this.setState({ description: e.target.value });
-  };
-
-  handleDateChange = e => {
-    this.setState({ date: e.target.value });
-  };
-
-  handleTypeChange = e => {
-    this.setState({ type: e.target.value });
-  };
-
-  handleTimeChange = e => {
-    this.setState({ time: e.target.value });
-  };
-
-  handleDistanceChange = e => {
-    this.setState({ distance: e.target.value });
-  };
-
-  handleDistanceUnitsChange = e => {
-    this.setState({ distanceUnits: e.target.value });
-  };
-
-  handleHourChange = e => {
-    this.setState({ hour: e.target.value });
-  };
-
-  handleMinuteChange = e => {
-    this.setState({ minute: e.target.value });
-  };
-
-  handleSecondChange = e => {
-    this.setState({ second: e.target.value });
+  handleChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   handleSubmit = async e => {
@@ -105,15 +73,7 @@ class CreateWorkout extends Component {
           minute={this.state.minute}
           second={this.state.second}
           handleSubmit={this.handleSubmit}
-          handleDescriptionChange={this.handleDescriptionChange}
-          handleDateChange={this.handleDateChange}
-          handleTypeChange={this.handleTypeChange}
-          handleTimeChange={this.handleTimeChange}
-          handleDistanceChange={this.handleDistanceChange}
-          handleDistanceUnitsChange={this.handleDistanceUnitsChange}
-          handleHourChange={this.handleHourChange}
-          handleMinuteChange={this.handleMinuteChange}
-          handleSecondChange={this.handleSecondChange}
+          handleChange={this.handleChange}
         />
         ;
       </div>
