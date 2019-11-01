@@ -1,27 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
+import { getWorkouts } from "../../actions/itemActions";
 import Workout from "./Workout";
-import workoutAPI from "../../api/workoutAPI";
 
 class WorkoutList extends Component {
-  state = { workouts: [], loaded: false };
-
-  componentDidMount = async () => {
-    await workoutAPI
-      // .get("/workouts?_sort=date&_order=desc")
-      .get("/workouts")
-      .then(res => {
-        this.setState({ workouts: res.data, loaded: true });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  static propTypes = {
+    getWorkouts: PropTypes.func.isRequired
   };
 
+  componentDidMount() {
+    this.props.getWorkouts();
+  }
+
   renderWorkouts = () => {
-    return this.state.workouts.map(workout => {
+    return this.props.workout.workouts.map(workout => {
       return (
         <Workout
           workout={workout}
@@ -33,11 +29,11 @@ class WorkoutList extends Component {
   };
 
   render() {
-    if (!this.state.workouts.length && !this.state.loaded) {
+    if (this.props.workout.loading) {
       return <Container className="mt-3">Loading...</Container>;
     }
 
-    if (!this.state.workouts.length && this.state.loaded) {
+    if (!this.props.workout.loading && !this.props.workout.workouts.length) {
       return (
         <Container className="mt-3">
           <h3>
@@ -46,9 +42,15 @@ class WorkoutList extends Component {
         </Container>
       );
     }
-
     return <Container className="mt-3">{this.renderWorkouts()}</Container>;
   }
 }
 
-export default WorkoutList;
+const mapStateToProps = state => ({
+  workout: state.workout
+});
+
+export default connect(
+  mapStateToProps,
+  { getWorkouts }
+)(WorkoutList);

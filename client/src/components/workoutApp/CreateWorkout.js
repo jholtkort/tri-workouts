@@ -87,7 +87,6 @@ class CreateWorkout extends Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
-        ;
       </div>
     );
   }
