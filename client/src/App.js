@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Navbar from "./workoutApp/Navbar";
-import WorkoutList from "./workoutApp/WorkoutList";
-import CreateWorkout from "./workoutApp/CreateWorkout";
-import UpdateWorkout from "./workoutApp/UpdateWorkout";
+import Navbar from "./components/workoutApp/Navbar";
+import WorkoutList from "./components/workoutApp/WorkoutList";
+import CreateWorkout from "./components/workoutApp/CreateWorkout";
+import UpdateWorkout from "./components/workoutApp/UpdateWorkout";
 
 const App = () => {
   return (
