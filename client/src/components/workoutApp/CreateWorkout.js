@@ -37,6 +37,18 @@ class CreateWorkout extends Component {
       second
     } = this.state;
 
+    console.log(
+      description,
+      date,
+      type,
+      time,
+      distance,
+      distanceUnits,
+      hour,
+      minute,
+      second
+    );
+
     await workoutAPI
       .post("/workouts", {
         description,

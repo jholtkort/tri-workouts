@@ -1,0 +1,29 @@
+{
+  "name": "tri-workouts",
+  "version": "1.0.0",
+  "description": "Workout tracker that allows you to track swim, bike, and run workouts",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm i --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest --watchAll --verbose --coverage"
+  },
+  "keywords": [],
+  "author": "Josh Holtkort",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^16.1.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
+}
