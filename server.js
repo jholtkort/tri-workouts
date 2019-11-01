@@ -10,7 +10,7 @@ mongoose
     useNewUrlParser: true
   })
   .then(() => console.log("Connected to MongoDB..."))
-  .catch(err => console.error("Could not connect to MongoDB..."));
+  .catch(err => console.error("ERROR could not connect to MongoDB"));
 
 app.use(cors());
 // app.use((req, res, next) => {
