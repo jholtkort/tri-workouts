@@ -1,0 +1,5 @@
+export const GET_WORKOUTS = "GET_WORKOUTS";
+export const ADD_WORKOUT = "ADD_WORKOUT";
+export const EDIT_WORKOUT = "EDIT_WORKOUT";
+export const DELETE_WORKOUT = "DELETE_WORKOUT";
+export const WORKOUTS_LOADING = "WORKOUTS_LOADING";
