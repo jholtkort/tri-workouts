@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getWorkouts } from "../../actions/itemActions";
+import { getWorkouts } from "../../actions/workoutActions";
 import Workout from "./Workout";
 
 class WorkoutList extends Component {
