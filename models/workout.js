@@ -65,7 +65,7 @@ function validateWorkout(workout) {
       .pattern(/(swim|bike|run)/)
       .required(),
     time: Joi.string()
-      .pattern(/\b((1[0-2]|0?[1-9]):([0-5][0-9])([AaPp][Mm]))/)
+      .pattern(/\b((1[0-2]|0?[1-9]):([0-5][0-9]))/)
       .required(),
     distance: Joi.number()
       .min(1)

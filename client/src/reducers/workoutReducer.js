@@ -24,6 +24,11 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
+    case ADD_WORKOUT:
+      return {
+        ...state,
+        workouts: [...state.workouts, action.payload]
+      };
     default:
       return state;
   }

@@ -41,9 +41,9 @@ const WorkoutForm = props => {
             required
           >
             <option value="">Select</option>
-            <option value="Swim">Swim</option>
-            <option value="Bike">Bike</option>
-            <option value="Run">Run</option>
+            <option value="swim">Swim</option>
+            <option value="bike">Bike</option>
+            <option value="run">Run</option>
           </Input>
         </FormGroup>
 
