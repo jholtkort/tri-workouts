@@ -9,7 +9,7 @@ const Workout = props => {
     <Card>
       <CardBody>
         <CardTitle>
-          <Link to={`/update/${props.workout.id}`} id="workout-title">
+          <Link to={`/update/${props.workout._id}`} id="workout-title">
             {props.workout.description}
           </Link>
         </CardTitle>

@@ -1,114 +1,154 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import WorkoutForm from "./WorkoutForm";
 import workoutAPI from "../../api/workoutAPI";
+import { getWorkoutById } from "../../actions/workoutActions";
 
 class UpdateWorkout extends Component {
-  state = {
-    id: null,
-    description: "",
-    date: "",
-    type: "",
-    time: "",
-    distance: "",
-    distanceUnits: "",
-    hour: "",
-    minute: "",
-    second: ""
-  };
+  componentDidMount() {
+    this.props.getWorkoutById(this.props.match.params.id);
+  }
 
-  componentDidMount = () => {
-    this._isMounted = true;
-    workoutAPI
-      .get(`/workouts/${this.props.match.params.id}`)
-      .then(res => {
-        this.setState({
-          id: res.data.id,
-          description: res.data.description,
-          date: res.data.date,
-          type: res.data.type,
-          time: res.data.time,
-          distance: res.data.distance,
-          distanceUnits: res.data.distanceUnits,
-          hour: res.data.hour,
-          minute: res.data.minute,
-          second: res.data.second
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  handleChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-
-    const {
-      id,
-      description,
-      date,
-      type,
-      time,
-      distance,
-      distanceUnits,
-      hour,
-      minute,
-      second
-    } = this.state;
-
-    await workoutAPI.put(`/workouts/${this.props.match.params.id}`, {
-      id,
-      description,
-      date,
-      type,
-      time,
-      distance,
-      distanceUnits,
-      hour,
-      minute,
-      second
-    });
-
-    this.props.history.push("/");
-  };
-
-  handleDeleteClick = async id => {
-    await workoutAPI.delete(`/workouts/${id}`);
-
-    this.props.history.push("/");
+  onSubmit = formValues => {
+    // TODO
   };
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/" />;
+    if (this.props.workout._id === this.props.match.params.id) {
+      return (
+        <div>
+          <h3>Update Workout</h3>
+          <WorkoutForm
+            initialValues={_.pick(
+              this.props.workout,
+              "description",
+              "date",
+              "type",
+              "time",
+              "distance",
+              "distanceUnits",
+              "hour",
+              "minute",
+              "second"
+            )}
+            onSubmit={this.onSubmit}
+          />
+        </div>
+      );
+    } else {
+      return <div>Loading...</div>;
     }
-
-    return (
-      <div>
-        <WorkoutForm
-          title="Update Workout"
-          id={this.state.id}
-          description={this.state.description}
-          date={this.state.date}
-          type={this.state.type}
-          time={this.state.time}
-          distance={this.state.distance}
-          distanceUnits={this.state.distanceUnits}
-          hour={this.state.hour}
-          minute={this.state.minute}
-          second={this.state.second}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          handleDeleteClick={this.handleDeleteClick}
-        />
-      </div>
-    );
   }
+
+  // state = {
+  //   id: null,
+  //   description: "",
+  //   date: "",
+  //   type: "",
+  //   time: "",
+  //   distance: "",
+  //   distanceUnits: "",
+  //   hour: "",
+  //   minute: "",
+  //   second: ""
+  // };
+  // static propTypes = {
+  //   getWorkoutById: PropTypes.func.isRequired
+  // };
+  // componentDidMount = () => {
+  //   this.props.getWorkoutById(this.props.match.params.id);
+  // };
+  // handleChange = e => {
+  //   this.setState({ [e.target.id]: e.target.value });
+  // };
+  // handleSubmit = async e => {
+  //   e.preventDefault();
+  //   const {
+  //     id,
+  //     description,
+  //     date,
+  //     type,
+  //     time,
+  //     distance,
+  //     distanceUnits,
+  //     hour,
+  //     minute,
+  //     second
+  //   } = this.state;
+  //   await workoutAPI.put(`/workouts/${this.props.match.params.id}`, {
+  //     id,
+  //     description,
+  //     date,
+  //     type,
+  //     time,
+  //     distance,
+  //     distanceUnits,
+  //     hour,
+  //     minute,
+  //     second
+  //   });
+  //   this.props.history.push("/");
+  // };
+  // handleDeleteClick = async id => {
+  //   await workoutAPI.delete(`/workouts/${id}`);
+  //   this.props.history.push("/");
+  // };
+  // render() {
+  //   console.log(this.props.workout.updateWorkout);
+  //   if (!this.props.workout.updateWorkout) {
+  //     return <div>Loading</div>;
+  //   }
+  // else {
+  //   this.setState({
+  //     id: this.props.workout.updateWorkout._id,
+  //     description: this.props.workout.updateWorkout.description,
+  //     date: this.props.workout.updateWorkout.date,
+  //     type: this.props.workout.updateWorkout.type,
+  //     time: this.props.workout.updateWorkout.time,
+  //     distance: this.props.workout.updateWorkout.distance,
+  //     distanceUnits: this.props.workout.updateWorkout.distanceUnits,
+  //     hour: this.props.workout.updateWorkout.hour,
+  //     minute: this.props.workout.updateWorkout.minute,
+  //     second: this.props.workout.updateWorkout.second
+  //   });
+  // }
+  // console.log(this.state);
+  // return <div>LOADED</div>;
+  // if (this.state.redirect) {
+  //   return <Redirect to="/" />;
+  // }
+  //   return (
+  //     <div>
+  //       <WorkoutForm
+  //         title="Update Workout"
+  //         id={this.state.id}
+  //         description={this.state.description}
+  //         date={this.state.date}
+  //         type={this.state.type}
+  //         time={this.state.time}
+  //         distance={this.state.distance}
+  //         distanceUnits={this.state.distanceUnits}
+  //         hour={this.state.hour}
+  //         minute={this.state.minute}
+  //         second={this.state.second}
+  //         handleSubmit={this.handleSubmit}
+  //         handleChange={this.handleChange}
+  //         handleDeleteClick={this.handleDeleteClick}
+  //       />
+  //     </div>
+  //   );
+  // }
 }
 
-export default UpdateWorkout;
+const mapStateToProps = (state, ownProps) => {
+  return { workout: state.workout.workouts };
+};
+
+export default connect(
+  mapStateToProps,
+  { getWorkoutById }
+)(UpdateWorkout);

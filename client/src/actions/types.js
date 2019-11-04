@@ -3,3 +3,4 @@ export const ADD_WORKOUT = "ADD_WORKOUT";
 export const EDIT_WORKOUT = "EDIT_WORKOUT";
 export const DELETE_WORKOUT = "DELETE_WORKOUT";
 export const WORKOUTS_LOADING = "WORKOUTS_LOADING";
+export const GET_WORKOUT_BY_ID = "GET_WORKOUT_BY_ID";

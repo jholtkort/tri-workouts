@@ -3,7 +3,8 @@ import {
   ADD_WORKOUT,
   EDIT_WORKOUT,
   DELETE_WORKOUT,
-  WORKOUTS_LOADING
+  WORKOUTS_LOADING,
+  GET_WORKOUT_BY_ID
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +29,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         workouts: [...state.workouts, action.payload]
+      };
+    case GET_WORKOUT_BY_ID:
+      return {
+        ...state,
+        // [action.payload._id]: action.payload
+        workouts: action.payload
       };
     default:
       return state;

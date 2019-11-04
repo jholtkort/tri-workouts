@@ -15,6 +15,8 @@ const WorkoutForm = props => {
       </Button>
     );
   }
+  console.log(props);
+
   return (
     <div className="mx-5">
       <h1>{props.title}</h1>

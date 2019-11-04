@@ -1,6 +1,7 @@
 import {
   GET_WORKOUTS,
   ADD_WORKOUT,
+  GET_WORKOUT_BY_ID,
   EDIT_WORKOUT,
   DELETE_WORKOUT,
   WORKOUTS_LOADING
@@ -50,6 +51,27 @@ export const addWorkout = workout => dispatch => {
   //     this.setState({ redirect: true });
   //   })
   //   .catch(err => console.log("ERROR", err));
+};
+
+export const getWorkoutById = id => dispatch => {
+  // const response = workoutAPI.get(`/api/workouts/${id}`);
+
+  // console.log(response);
+
+  // dispatch({
+  //   type: GET_WORKOUT_BY_ID,
+  //   payload: response.data
+  // });
+
+  workoutAPI
+    .get(`/api/workouts/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_WORKOUT_BY_ID,
+        payload: res.data
+      })
+    )
+    .catch(err => console.log(err));
 };
 
 export const setWorkoutsLoading = () => {
