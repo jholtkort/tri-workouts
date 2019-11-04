@@ -1,48 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 
-export default function Navbar() {
+const AppNavbar = props => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          Tri Workouts
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <Link to="/create" className="nav-link">
-                Add Workout
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar color="dark" dark expand="md">
+        <NavbarBrand href="/">Tri Workouts</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/create">Add Workout</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
-}
+};
+
+export default AppNavbar;

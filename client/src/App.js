@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 
 import store from "./store";
 import "./App.css";
-import Navbar from "./components/workoutApp/Navbar";
+import AppNavbar from "./components/workoutApp/Navbar";
 import WorkoutList from "./components/workoutApp/WorkoutList";
 import CreateWorkout from "./components/workoutApp/CreateWorkout";
 import UpdateWorkout from "./components/workoutApp/UpdateWorkout";
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router history={createBrowserHistory}>
-        <Navbar />
+        <AppNavbar />
         <div className="main-app">
           <Switch>
             <Route exact path="/" component={WorkoutList} />
