@@ -38,15 +38,15 @@ class UpdateWorkout extends Component {
             title="Update Workout"
             initialValues={_.pick(
               this.props.workout,
-              "description"
-              // "date",
-              // "type",
-              // "time",
-              // "distance",
-              // "distanceUnits",
-              // "hour",
-              // "minute",
-              // "second"
+              "description",
+              "date",
+              "type",
+              "time",
+              "distance",
+              "distanceUnits",
+              "hour",
+              "minute",
+              "second"
             )}
             handleDelete={this.handleDelete}
             onSubmit={this.onSubmit}

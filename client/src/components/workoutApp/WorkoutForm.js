@@ -1,292 +1,306 @@
 import React, { Component } from "react";
-
-import { Field, reduxForm } from "redux-form";
+import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class WorkoutForm extends Component {
-  onSubmit = formValues => {
-    this.props.onSubmit(formValues);
+  state = {
+    description: this.props.description,
+    date: this.props.date,
+    type: this.props.type,
+    time: this.props.time,
+    distance: this.props.distance,
+    distanceUnits: this.props.distanceUnits,
+    hour: this.props.hour,
+    minute: this.props.minute,
+    second: this.props.second
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.props.onSubmit(this.state);
   };
 
   render() {
-    let button;
+    let button = null;
 
-    // if (this.props.title === "Update Workout") {
-    //   button = <button onClick={this.props.handleDelete}>Delete</button>;
-    // }
+    if (this.props.title === "Update Workout") {
+      button = (
+        <Button
+          onClick={() => this.props.handleDeleteClick(this.props.id)}
+          color="danger"
+          className="ml-2 deleteButton"
+        >
+          Delete
+        </Button>
+      );
+    }
 
     return (
-      <div>
-        <h3>{this.props.title}</h3>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-          <label>Description</label>
-          <div>
-            <Field
-              name="description"
-              component="input"
+      <div className="mx-5">
+        <h1>{this.props.title}</h1>
+        <Form onSubmit={this.handleSubmit} className="mb-5">
+          <FormGroup>
+            <Label for="description">Description:</Label>
+            <Input
               type="text"
-              placeholder="Description"
+              id="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+              required
             />
-          </div>
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="type">Type:</Label>
+            <Input
+              type="select"
+              value={this.state.type}
+              onChange={this.handleChange}
+              id="type"
+              className="form-control"
+              required
+            >
+              <option value="">Select</option>
+              <option value="swim">Swim</option>
+              <option value="bike">Bike</option>
+              <option value="run">Run</option>
+            </Input>
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="date">Date:</Label>
+            <Input
+              type="date"
+              className="form-control"
+              id="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+              required
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="time">Time:</Label>
+            <Input
+              type="time"
+              className="form-control"
+              id="time"
+              value={this.state.time}
+              onChange={this.handleChange}
+              required
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="distance">Distance:</Label>
+            <Row>
+              <Col>
+                <Input
+                  type="number"
+                  className="form-control"
+                  id="distance"
+                  value={this.state.distance}
+                  onChange={this.handleChange}
+                  required
+                />
+              </Col>
+              <Col>
+                <Input
+                  type="select"
+                  value={this.state.distanceUnits}
+                  onChange={this.handleChange}
+                  id="distanceUnits"
+                  className="form-control"
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="mi">mi</option>
+                  <option value="yd">yd</option>
+                  <option value="km">km</option>
+                  <option value="m">m</option>
+                </Input>
+              </Col>
+            </Row>
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="duration">Duration:</Label>
+            <Row>
+              <Col>
+                <Input
+                  type="number"
+                  className="form-control"
+                  min="0"
+                  max="99"
+                  id="hour"
+                  value={this.state.hour}
+                  onChange={this.handleChange}
+                  required
+                />
+                hr
+              </Col>
+              <Col>
+                <Input
+                  type="number"
+                  className="form-control"
+                  min="0"
+                  max="99"
+                  id="minute"
+                  value={this.state.minute}
+                  onChange={this.handleChange}
+                  required
+                />{" "}
+                min
+              </Col>
+              <Col>
+                <Input
+                  type="number"
+                  className="form-control"
+                  min="0"
+                  max="99"
+                  id="second"
+                  value={this.state.second}
+                  onChange={this.handleChange}
+                  required
+                />{" "}
+                sec
+              </Col>
+            </Row>
+          </FormGroup>
+
+          <Button type="submit" color="primary">
+            Submit
+          </Button>
           {button}
-          <button>Submit</button>
-        </form>
+        </Form>
       </div>
     );
   }
-
-  // const { handleSubmit, pristine, reset, submitting } = props;
-  // return (
-  //   <div className="mx-5">
-  //     <Form onSubmit={handleSubmit} className="mb-5">
-  //       <Label>Description</Label>
-  //       <div>
-  //         <Field
-  //           name="description"
-  //           component="input"
-  //           type="text"
-  //           placeholder="Description"
-  //         />
-  //       </div>
-
-  //       <Label>Date</Label>
-  //       <div>
-  //         <Field name="date" component="input" type="date" placeholder="Date" />
-  //       </div>
-  //       <Label>Type</Label>
-  //       <div>
-  //         <Field name="type" component="select">
-  //           <option />
-  //           <option value="swim">Swim</option>
-  //           <option value="bike">Bike</option>
-  //           <option value="run">Run</option>
-  //         </Field>
-  //       </div>
-  //       <Label>Time</Label>
-  //       <div>
-  //         <Field name="time" component="input" type="text" placeholder="Time" />
-  //       </div>
-  //       <Label>Distance</Label>
-  //       <div>
-  //         <Field
-  //           name="distance"
-  //           component="input"
-  //           type="text"
-  //           placeholder="Distance"
-  //         />
-  //       </div>
-  //       <Label>Distance Units</Label>
-  //       <div>
-  //         <Field
-  //           name="distanceUnits"
-  //           component="input"
-  //           type="text"
-  //           placeholder="Distance Units"
-  //         />
-  //       </div>
-  //       <Label>Hour</Label>
-  //       <div>
-  //         <Field name="hour" component="input" type="text" placeholder="Hour" />
-  //       </div>
-  //       <Label>Minute</Label>
-  //       <div>
-  //         <Field
-  //           name="minute"
-  //           component="input"
-  //           type="text"
-  //           placeholder="Minute"
-  //         />
-  //       </div>
-  //       <Label>Second</Label>
-  //       <div>
-  //         <Field
-  //           name="second"
-  //           component="input"
-  //           type="text"
-  //           placeholder="Second"
-  //         />
-  //       </div>
-
-  //       <Button type="submit" color="primary">
-  //         Submit
-  //       </Button>
-  //     </Form>
-  //   </div>
-  // );
 }
 
-export default reduxForm({
-  form: "workoutForm" // a unique identifier for this form
-})(WorkoutForm);
+export default WorkoutForm;
 
-// import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+// class WorkoutForm extends Component {
+//   onSubmit = formValues => {
+//     this.props.onSubmit(formValues);
+//   };
 
-// const WorkoutForm = props => {
-//   let button = null;
+//   render() {
+//     const { handleSubmit, pristine, reset, submitting } = this.props
+//     return (
+//       <div>
+//         <h3>{this.props.title}</h3>
+//         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+//           <Field
+//             name="description"
+//             component={renderField}
+//             type="text"
+//             label="Description"
+//             placeholder="Description"
+//           />
 
-//   if (props.title === "Update Workout") {
-//     button = (
-//       <Button
-//         onClick={() => props.handleDeleteClick(props.id)}
-//         color="danger"
-//         className="ml-2 deleteButton"
-//       >
-//         Delete
-//       </Button>
+//           <label>Date</label>
+//           <div>
+//             <Field
+//               name="date"
+//               component="input"
+//               type="date"
+//               placeholder="Date"
+//             />
+//           </div>
+
+//           <label>Type</label>
+//           <div>
+//             <Field name="type" component="select">
+//               <option />
+//               <option value="swim">Swim</option>
+//               <option value="bike">Bike</option>
+//               <option value="run">Run</option>
+//             </Field>
+//           </div>
+
+//           <label>Time</label>
+//           <div>
+//             <Field
+//               name="time"
+//               component="input"
+//               type="text"
+//               placeholder="Time"
+//             />
+//           </div>
+
+//           <label>Distance</label>
+//           <div>
+//             <Field
+//               name="distance"
+//               component="input"
+//               type="text"
+//               placeholder="Distance"
+//             />
+//           </div>
+
+//           <label>DistanceUnits</label>
+//           <div>
+//             <Field name="distanceUnits" component="select">
+//               <option />
+//               <option value="m">m</option>
+//               <option value="km">km</option>
+//               <option value="yd">yd</option>
+//               <option value="yd">yd</option>
+//               <option value="mi">mi</option>
+//             </Field>
+//           </div>
+
+//           <label>Hour</label>
+//           <div>
+//             <Field
+//               name="hour"
+//               component="input"
+//               type="text"
+//               placeholder="Hour"
+//             />
+//           </div>
+
+//           <label>Minute</label>
+//           <div>
+//             <Field
+//               name="minute"
+//               component="input"
+//               type="text"
+//               placeholder="Minute"
+//             />
+//           </div>
+
+//           <label>Second</label>
+//           <div>
+//             <Field
+//               name="second"
+//               component="input"
+//               type="text"
+//               placeholder="Second"
+//             />
+//           </div>
+//           <button>Submit</button>
+//         </form>
+//       </div>
 //     );
 //   }
-//   const {
-//     description,
-//     date,
-//     type,
-//     time,
-//     distance,
-//     distanceUnits,
-//     hour,
-//     minute,
-//     second
-//   } = props.initialValues;
-//   console.log(props.initialValues);
+// }
 
-//   return (
-//     <div className="mx-5">
-//       <h1>{props.title}</h1>
-//       <Form onSubmit={props.handleSubmit} className="mb-5">
-//         <FormGroup>
-//           <Label for="description">Description:</Label>
-//           <Input
-//             type="text"
-//             id="description"
-//             value={description}
-//             onChange={props.handleChange}
-//             required
-//           />
-//         </FormGroup>
+// // const validate = formValues => {
+// //   const errors = {};
+// //   if (!formValues.description) {
+// //     errors.description = "You must enter a description";
+// //   }
 
-//         <FormGroup>
-//           <Label for="type">Type:</Label>
-//           <Input
-//             type="select"
-//             value={type}
-//             onChange={props.handleChange}
-//             id="type"
-//             className="form-control"
-//             required
-//           >
-//             <option value="">Select</option>
-//             <option value="swim">Swim</option>
-//             <option value="bike">Bike</option>
-//             <option value="run">Run</option>
-//           </Input>
-//         </FormGroup>
+// //   return errors;
+// // };
 
-//         <FormGroup>
-//           <Label for="date">Date:</Label>
-//           <Input
-//             type="date"
-//             className="form-control"
-//             id="date"
-//             value={date}
-//             onChange={props.handleChange}
-//             required
-//           />
-//         </FormGroup>
-
-//         <FormGroup>
-//           <Label for="time">Time:</Label>
-//           <Input
-//             type="time"
-//             className="form-control"
-//             id="time"
-//             value={time}
-//             onChange={props.handleChange}
-//             required
-//           />
-//         </FormGroup>
-
-//         <FormGroup>
-//           <Label for="distance">Distance:</Label>
-//           <Row>
-//             <Col>
-//               <Input
-//                 type="number"
-//                 className="form-control"
-//                 id="distance"
-//                 value={distance}
-//                 onChange={props.handleChange}
-//                 required
-//               />
-//             </Col>
-//             <Col>
-//               <Input
-//                 type="select"
-//                 value={distanceUnits}
-//                 onChange={props.handleChange}
-//                 id="distanceUnits"
-//                 className="form-control"
-//                 required
-//               >
-//                 <option value="">Select</option>
-//                 <option value="mi">mi</option>
-//                 <option value="yd">yd</option>
-//                 <option value="km">km</option>
-//                 <option value="m">m</option>
-//               </Input>
-//             </Col>
-//           </Row>
-//         </FormGroup>
-
-//         <FormGroup>
-//           <Label for="duration">Duration:</Label>
-//           <Row>
-//             <Col>
-//               <Input
-//                 type="number"
-//                 className="form-control"
-//                 min="0"
-//                 max="99"
-//                 id="hour"
-//                 value={hour}
-//                 onChange={props.handleChange}
-//                 required
-//               />
-//               hr
-//             </Col>
-//             <Col>
-//               <Input
-//                 type="number"
-//                 className="form-control"
-//                 min="0"
-//                 max="99"
-//                 id="minute"
-//                 value={minute}
-//                 onChange={props.handleChange}
-//                 required
-//               />{" "}
-//               min
-//             </Col>
-//             <Col>
-//               <Input
-//                 type="number"
-//                 className="form-control"
-//                 min="0"
-//                 max="99"
-//                 id="second"
-//                 value={second}
-//                 onChange={props.handleChange}
-//                 required
-//               />{" "}
-//               sec
-//             </Col>
-//           </Row>
-//         </FormGroup>
-
-//         <Button type="submit" color="primary">
-//           Submit
-//         </Button>
-//         {button}
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default WorkoutForm;
+// export default reduxForm({
+//   form: "workoutForm"
+//   // validate
+// })(WorkoutForm);

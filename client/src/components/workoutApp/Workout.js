@@ -30,21 +30,20 @@ class Workout extends Component {
               {this.props.workout.description}
             </Link>
           </CardTitle>
+          <CardSubtitle className="mb-2 text-muted">
+            {this.props.workout.date} at {this.props.workout.time}
+          </CardSubtitle>
 
-          {/* <CardSubtitle className="mb-2 text-muted">
-              {props.workout.date} at {props.workout.time}
-            </CardSubtitle>
-    
-            <CardText className="workout-stats">
-              <li className="pr-3 mr-3">{props.workout.type}</li>
-              <li className="pr-3 mr-3">
-                {props.workout.distance} {props.workout.distanceUnits}
-              </li>
-              <li className="mr-3">
-                {props.workout.hour} hr {props.workout.minute} min{" "}
-                {props.workout.second} sec
-              </li>
-            </CardText> */}
+          <CardText className="workout-stats">
+            <li className="pr-3 mr-3">{this.props.workout.type}</li>
+            <li className="pr-3 mr-3">
+              {this.props.workout.distance} {this.props.workout.distanceUnits}
+            </li>
+            <li className="mr-3">
+              {this.props.workout.hour} hr {this.props.workout.minute} min{" "}
+              {this.props.workout.second} sec
+            </li>
+          </CardText>
         </CardBody>
       </Card>
     );

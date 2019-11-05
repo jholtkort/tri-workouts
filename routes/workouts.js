@@ -12,15 +12,15 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   let workout = new Workout({
-    description: req.body.description
-    // date: req.body.date,
-    // type: req.body.type,
-    // time: req.body.time,
-    // distance: req.body.distance,
-    // distanceUnits: req.body.distanceUnits,
-    // hour: req.body.hour,
-    // minute: req.body.minute,
-    // second: req.body.second
+    description: req.body.description,
+    date: req.body.date,
+    type: req.body.type,
+    time: req.body.time,
+    distance: req.body.distance,
+    distanceUnits: req.body.distanceUnits,
+    hour: req.body.hour,
+    minute: req.body.minute,
+    second: req.body.second
   });
 
   workout = await workout.save();
@@ -35,15 +35,15 @@ router.put("/:id", async (req, res) => {
   const workout = await Workout.findByIdAndUpdate(
     req.params.id,
     {
-      description: req.body.description
-      // date: req.body.date,
-      // type: req.body.type,
-      // time: req.body.time,
-      // distance: req.body.distance,
-      // distanceUnits: req.body.distanceUnits,
-      // hour: req.body.hour,
-      // minute: req.body.minute,
-      // second: req.body.second
+      description: req.body.description,
+      date: req.body.date,
+      type: req.body.type,
+      time: req.body.time,
+      distance: req.body.distance,
+      distanceUnits: req.body.distanceUnits,
+      hour: req.body.hour,
+      minute: req.body.minute,
+      second: req.body.second
     },
     { new: true }
   );

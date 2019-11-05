@@ -17,8 +17,19 @@ class CreateWorkout extends Component {
   render() {
     return (
       <div>
-        <h3>Create Workout</h3>
-        <WorkoutForm onSubmit={this.onSubmit} />
+        <WorkoutForm
+          onSubmit={this.onSubmit}
+          description=""
+          date=""
+          type=""
+          time=""
+          distance=""
+          distanceUnits=""
+          hour=""
+          minute=""
+          second=""
+          title={"Create Workout"}
+        />
       </div>
     );
   }
