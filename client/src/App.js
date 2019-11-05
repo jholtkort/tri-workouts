@@ -16,7 +16,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={createBrowserHistory}>
         <AppNavbar />
-        <div className="main-app">
+        <div className="main-app my-5">
           <Switch>
             <Route exact path="/" component={WorkoutList} />
             <Route path="/create" component={CreateWorkout} />

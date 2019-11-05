@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 import {
   GET_WORKOUTS,
   GET_WORKOUT_BY_ID,
