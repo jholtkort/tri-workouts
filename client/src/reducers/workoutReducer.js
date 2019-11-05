@@ -1,10 +1,10 @@
 import {
   GET_WORKOUTS,
-  ADD_WORKOUT,
-  EDIT_WORKOUT,
+  GET_WORKOUT_BY_ID,
+  CREATE_WORKOUT,
+  UPDATE_WORKOUT,
   DELETE_WORKOUT,
-  WORKOUTS_LOADING,
-  GET_WORKOUT_BY_ID
+  WORKOUTS_LOADING
 } from "../actions/types";
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case GET_WORKOUTS:
       return {
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
-    case ADD_WORKOUT:
+    case CREATE_WORKOUT:
       return {
         ...state,
         workouts: [...state.workouts, action.payload]
@@ -33,10 +33,21 @@ export default function(state = initialState, action) {
     case GET_WORKOUT_BY_ID:
       return {
         ...state,
-        // [action.payload._id]: action.payload
         workouts: action.payload
+      };
+    case UPDATE_WORKOUT:
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      };
+    case DELETE_WORKOUT:
+      return {
+        ...state,
+        workouts: state.workouts.filter(
+          workout => workout._id !== action.payload
+        )
       };
     default:
       return state;
   }
-}
+};

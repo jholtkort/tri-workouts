@@ -18,7 +18,13 @@ class WorkoutList extends Component {
 
   renderWorkouts = () => {
     return this.props.workout.workouts.map(workout => {
-      return <Workout workout={workout} key={workout._id} />;
+      return (
+        <Workout
+          workout={workout}
+          key={workout._id}
+          onDeleteClick={this.onDeleteClick}
+        />
+      );
     });
   };
 

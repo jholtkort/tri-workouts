@@ -1,77 +1,78 @@
 import {
   GET_WORKOUTS,
-  ADD_WORKOUT,
+  CREATE_WORKOUT,
   GET_WORKOUT_BY_ID,
-  EDIT_WORKOUT,
+  UPDATE_WORKOUT,
   DELETE_WORKOUT,
   WORKOUTS_LOADING
 } from "./types";
+import history from "../history";
 
 import workoutAPI from "../api/workoutAPI";
 
-export const getWorkouts = () => dispatch => {
+export const getWorkouts = () => async dispatch => {
   dispatch(setWorkoutsLoading());
 
-  workoutAPI
-    .get("/api/workouts")
-    .then(res =>
-      dispatch({
-        type: GET_WORKOUTS,
-        payload: res.data
-      })
-    )
-    .catch(err => console.log("ERROR", err));
+  try {
+    const res = await workoutAPI.get("/api/workouts");
+
+    dispatch({
+      type: GET_WORKOUTS,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log("ERROR", err);
+  }
 };
 
-export const addWorkout = workout => dispatch => {
-  workoutAPI
-    .post("/api/workouts", workout)
-    .then(res =>
-      // console.log(res)
-      dispatch({
-        type: ADD_WORKOUT,
-        payload: res.data
-      })
-    )
-    .catch(err => console.log(err));
+export const createWorkout = formValues => async dispatch => {
+  try {
+    const res = await workoutAPI.post("/api/workouts", formValues);
 
-  // await workoutAPI
-  //   .post("api/workouts", {
-  //     description,
-  //     date,
-  //     type,
-  //     time,
-  //     distance,
-  //     distanceUnits,
-  //     hour,
-  //     minute,
-  //     second
-  //   })
-  //   .then(() => {
-  //     this.setState({ redirect: true });
-  //   })
-  //   .catch(err => console.log("ERROR", err));
+    dispatch({
+      type: CREATE_WORKOUT,
+      payload: res.data
+    });
+
+    history.push("/");
+  } catch (err) {
+    console.log("ERROR", err);
+  }
 };
 
-export const getWorkoutById = id => dispatch => {
-  // const response = workoutAPI.get(`/api/workouts/${id}`);
+export const getWorkoutById = id => async dispatch => {
+  try {
+    const res = await workoutAPI.get(`/api/workouts/${id}`);
 
-  // console.log(response);
+    dispatch({
+      type: GET_WORKOUT_BY_ID,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log("ERROR", err);
+  }
+};
 
-  // dispatch({
-  //   type: GET_WORKOUT_BY_ID,
-  //   payload: response.data
-  // });
+export const updateWorkout = (id, formValues) => async dispatch => {
+  try {
+    const res = await workoutAPI.put(`/api/workouts/${id}`, formValues);
 
-  workoutAPI
-    .get(`/api/workouts/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_WORKOUT_BY_ID,
-        payload: res.data
-      })
-    )
-    .catch(err => console.log(err));
+    dispatch({ type: UPDATE_WORKOUT, payload: res.data });
+
+    history.push("/");
+  } catch (err) {
+    console.log("ERROR", err);
+  }
+};
+
+export const deleteWorkout = id => async dispatch => {
+  try {
+    await workoutAPI.delete(`/api/workouts/${id}`);
+
+    dispatch({ type: DELETE_WORKOUT, payload: id });
+  } catch (err) {
+    console.log("ERROR", err);
+  }
 };
 
 export const setWorkoutsLoading = () => {
