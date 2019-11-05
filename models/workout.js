@@ -17,10 +17,6 @@ const workoutSchema = new mongoose.Schema({
     enum: ["swim", "bike", "run"],
     required: true
   },
-  time: {
-    type: String,
-    required: true
-  },
   distance: {
     type: Number,
     min: 1,
@@ -57,15 +53,12 @@ const Workout = mongoose.model("Workout", workoutSchema);
 function validateWorkout(workout) {
   const schema = Joi.object({
     description: Joi.string()
-      .min(5)
+      .min(1)
       .max(255)
       .required(),
     date: Joi.date().required(),
     type: Joi.string()
       .pattern(/(swim|bike|run)/)
-      .required(),
-    time: Joi.string()
-      .pattern(/\b((1[0-2]|0?[1-9]):([0-5][0-9]))/)
       .required(),
     distance: Joi.number()
       .min(1)

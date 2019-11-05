@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import Moment from "react-moment";
 
 import { deleteWorkout } from "../../actions/workoutActions";
 import {
@@ -16,7 +16,7 @@ import {
 import "./Workout.css";
 
 class Workout extends Component {
-  onDeleteClick = id => {
+  onDeleteClick = () => {
     this.props.deleteWorkout(this.props.workout._id);
   };
 
@@ -31,7 +31,7 @@ class Workout extends Component {
             </Link>
           </CardTitle>
           <CardSubtitle className="mb-2 text-muted">
-            {this.props.workout.date} at {this.props.workout.time}
+            <Moment format="MM/DD/YYYY">{this.props.workout.date}</Moment>
           </CardSubtitle>
 
           <CardText className="workout-stats">

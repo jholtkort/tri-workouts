@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import moment from "moment";
 import PropTypes from "prop-types";
 
 class WorkoutForm extends Component {
   static propTypes = {
     description: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
     type: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
     distanceUnits: PropTypes.string.isRequired,
     hour: PropTypes.number.isRequired,
@@ -17,9 +17,8 @@ class WorkoutForm extends Component {
 
   state = {
     description: this.props.description,
-    date: this.props.date,
+    date: moment(this.props.date).format("YYYY-MM-DD"),
     type: this.props.type,
-    time: this.props.time,
     distance: this.props.distance,
     distanceUnits: this.props.distanceUnits,
     hour: this.props.hour,
@@ -96,7 +95,7 @@ class WorkoutForm extends Component {
             />
           </FormGroup>
 
-          <FormGroup>
+          {/* <FormGroup>
             <Label for="time">Time:</Label>
             <Input
               type="time"
@@ -106,7 +105,7 @@ class WorkoutForm extends Component {
               onChange={this.handleChange}
               required
             />
-          </FormGroup>
+          </FormGroup> */}
 
           <FormGroup>
             <Label for="distance">Distance:</Label>

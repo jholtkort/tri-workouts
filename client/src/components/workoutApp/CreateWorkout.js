@@ -11,6 +11,7 @@ class CreateWorkout extends Component {
   };
 
   onSubmit = formValues => {
+    console.log(formValues);
     this.props.createWorkout(formValues);
   };
 
@@ -21,14 +22,13 @@ class CreateWorkout extends Component {
           onSubmit={this.onSubmit}
           title="Create Workout"
           description=""
-          date=""
+          date={new Date()}
           type=""
-          time=""
-          distance=""
+          distance={1}
           distanceUnits=""
-          hour=""
-          minute=""
-          second=""
+          hour={1}
+          minute={0}
+          second={0}
         />
       </div>
     );

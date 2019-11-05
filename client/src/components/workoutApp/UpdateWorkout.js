@@ -41,7 +41,7 @@ class UpdateWorkout extends Component {
             description={this.props.workout.description}
             date={this.props.workout.date}
             type={this.props.workout.type}
-            time={this.props.workout.time}
+            // time={this.props.workout.time}
             distance={this.props.workout.distance}
             distanceUnits={this.props.workout.distanceUnits}
             hour={this.props.workout.hour}
