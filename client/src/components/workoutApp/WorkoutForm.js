@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import PropTypes from "prop-types";
 
 class WorkoutForm extends Component {
+  static propTypes = {
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    distance: PropTypes.number.isRequired,
+    distanceUnits: PropTypes.string.isRequired,
+    hour: PropTypes.number.isRequired,
+    minute: PropTypes.number.isRequired,
+    second: PropTypes.number.isRequired
+  };
+
   state = {
     description: this.props.description,
     date: this.props.date,

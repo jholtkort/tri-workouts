@@ -19,6 +19,7 @@ class CreateWorkout extends Component {
       <div>
         <WorkoutForm
           onSubmit={this.onSubmit}
+          title="Create Workout"
           description=""
           date=""
           type=""
@@ -28,7 +29,6 @@ class CreateWorkout extends Component {
           hour=""
           minute=""
           second=""
-          title={"Create Workout"}
         />
       </div>
     );
