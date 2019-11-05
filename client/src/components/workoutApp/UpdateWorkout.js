@@ -22,7 +22,7 @@ class UpdateWorkout extends Component {
     this.props.getWorkoutById(this.props.match.params.id);
   }
 
-  handleDelete = () => {
+  handleDeleteClick = () => {
     this.props.deleteWorkout(this.props.match.params.id);
   };
 
@@ -36,12 +36,11 @@ class UpdateWorkout extends Component {
         <div>
           <WorkoutForm
             onSubmit={this.onSubmit}
-            handleDelete={this.handleDelete}
+            handleDeleteClick={this.handleDeleteClick}
             title="Update Workout"
             description={this.props.workout.description}
             date={this.props.workout.date}
             type={this.props.workout.type}
-            // time={this.props.workout.time}
             distance={this.props.workout.distance}
             distanceUnits={this.props.workout.distanceUnits}
             hour={this.props.workout.hour}

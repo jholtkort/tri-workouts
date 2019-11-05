@@ -11,7 +11,6 @@ class CreateWorkout extends Component {
   };
 
   onSubmit = formValues => {
-    console.log(formValues);
     this.props.createWorkout(formValues);
   };
 

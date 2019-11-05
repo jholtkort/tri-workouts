@@ -95,18 +95,6 @@ class WorkoutForm extends Component {
             />
           </FormGroup>
 
-          {/* <FormGroup>
-            <Label for="time">Time:</Label>
-            <Input
-              type="time"
-              className="form-control"
-              id="time"
-              value={this.state.time}
-              onChange={this.handleChange}
-              required
-            />
-          </FormGroup> */}
-
           <FormGroup>
             <Label for="distance">Distance:</Label>
             <Row>
