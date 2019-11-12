@@ -4,8 +4,10 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 
+const keys = require("./config/keys");
+
 mongoose
-  .connect("mongodb://localhost/triworkout", {
+  .connect(keys.mongoURI, {
     useUnifiedTopology: true,
     useNewUrlParser: true
   })
