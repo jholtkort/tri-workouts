@@ -7,7 +7,6 @@ const keys = require("./config/keys");
 require("./models/User");
 const workoutRoutes = require("./routes/workoutRoutes");
 const authRoutes = require("./routes/authRoutes");
-// const cors = require("cors");
 
 require("./services/passport");
 
@@ -23,7 +22,6 @@ const app = express();
 
 app.use(express.json());
 
-// app.use(cors());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -34,7 +32,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/workouts", (req, res) => res.send(`Thanks, ${req.user}`));
 app.use("/auth", authRoutes);
 app.use("/api/workouts", workoutRoutes);
 
