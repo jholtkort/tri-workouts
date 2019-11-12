@@ -14,7 +14,7 @@ const App = () => {
       <Header />
       <div className="main-app my-5">
         <Switch>
-          <Route exact path="/" component={WorkoutList} />
+          <Route exact path="/workouts" component={WorkoutList} />
           <Route path="/create" component={WorkoutCreate} />
           <Route path="/update/:id" component={WorkoutUpdate} />
         </Switch>
