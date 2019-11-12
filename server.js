@@ -5,7 +5,7 @@ const cookieSession = require("cookie-session");
 
 const keys = require("./config/keys");
 require("./models/User");
-const workouts = require("./routes/workouts");
+const workoutRoutes = require("./routes/workoutRoutes");
 const authRoutes = require("./routes/authRoutes");
 // const cors = require("cors");
 
@@ -36,8 +36,9 @@ app.use(passport.session());
 
 app.get("/workouts", (req, res) => res.send(`Thanks, ${req.user}`));
 app.use("/auth", authRoutes);
-app.use("/api/workouts", workouts);
+app.use("/api/workouts", workoutRoutes);
 
+// React file in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
