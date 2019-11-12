@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
   GET_WORKOUTS,
   CREATE_WORKOUT,
@@ -8,13 +10,11 @@ import {
 } from "./types";
 import history from "../history";
 
-import workoutAPI from "../api/workoutAPI";
-
 export const getWorkouts = () => async dispatch => {
   dispatch(setWorkoutsLoading());
 
   try {
-    const res = await workoutAPI.get("/api/workouts");
+    const res = await axios.get("/api/workouts");
 
     dispatch({
       type: GET_WORKOUTS,
@@ -27,7 +27,7 @@ export const getWorkouts = () => async dispatch => {
 
 export const createWorkout = formValues => async dispatch => {
   try {
-    const res = await workoutAPI.post("/api/workouts", formValues);
+    const res = await axios.post("/api/workouts", formValues);
 
     dispatch({
       type: CREATE_WORKOUT,
@@ -42,7 +42,7 @@ export const createWorkout = formValues => async dispatch => {
 
 export const getWorkoutById = id => async dispatch => {
   try {
-    const res = await workoutAPI.get(`/api/workouts/${id}`);
+    const res = await axios.get(`/api/workouts/${id}`);
 
     dispatch({
       type: GET_WORKOUT_BY_ID,
@@ -55,7 +55,7 @@ export const getWorkoutById = id => async dispatch => {
 
 export const updateWorkout = (id, formValues) => async dispatch => {
   try {
-    const res = await workoutAPI.put(`/api/workouts/${id}`, formValues);
+    const res = await axios.put(`/api/workouts/${id}`, formValues);
 
     dispatch({ type: UPDATE_WORKOUT, payload: res.data });
 
@@ -67,7 +67,7 @@ export const updateWorkout = (id, formValues) => async dispatch => {
 
 export const deleteWorkout = id => async dispatch => {
   try {
-    await workoutAPI.delete(`/api/workouts/${id}`);
+    await axios.delete(`/api/workouts/${id}`);
 
     dispatch({ type: DELETE_WORKOUT, payload: id });
   } catch (err) {
