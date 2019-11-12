@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 require("./models/User");
 const workoutRoutes = require("./routes/workoutRoutes");
 const authRoutes = require("./routes/authRoutes");
+const requireLogin = require("./middlewares/requireLogin");
 
 require("./services/passport");
 
@@ -33,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRoutes);
-app.use("/api/workouts", workoutRoutes);
+app.use("/api/workouts", requireLogin, workoutRoutes);
 
 // React file in production
 if (process.env.NODE_ENV === "production") {
