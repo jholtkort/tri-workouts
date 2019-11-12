@@ -2,10 +2,11 @@ import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Header from "./workoutApp/Header";
-import WorkoutList from "./workoutApp/WorkoutList";
-import WorkoutCreate from "./workoutApp/WorkoutCreate";
-import WorkoutUpdate from "./workoutApp/WorkoutUpdate";
+import Header from "./workouts/Header";
+import Landing from "./Landing";
+import WorkoutList from "./workouts/WorkoutList";
+import WorkoutCreate from "./workouts/WorkoutCreate";
+import WorkoutUpdate from "./workouts/WorkoutUpdate";
 import createBrowserHistory from "../history";
 
 const App = () => {
@@ -14,7 +15,8 @@ const App = () => {
       <Header />
       <div className="main-app my-5">
         <Switch>
-          <Route exact path="/workouts" component={WorkoutList} />
+          <Route exact path="/" component={Landing} />
+          <Route path="/workouts" component={WorkoutList} />
           <Route path="/create" component={WorkoutCreate} />
           <Route path="/update/:id" component={WorkoutUpdate} />
         </Switch>
