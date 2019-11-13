@@ -4,7 +4,7 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 
 const keys = require("./config/keys");
-require("./models/User");
+require("./models/UserModel");
 const workoutRoutes = require("./routes/workoutRoutes");
 const authRoutes = require("./routes/authRoutes");
 const requireLogin = require("./middlewares/requireLogin");
