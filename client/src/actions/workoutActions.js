@@ -34,7 +34,7 @@ export const createWorkout = formValues => async dispatch => {
       payload: res.data
     });
 
-    history.push("/");
+    history.push("/workouts");
   } catch (err) {
     console.log("ERROR", err);
   }
@@ -59,7 +59,7 @@ export const updateWorkout = (id, formValues) => async dispatch => {
 
     dispatch({ type: UPDATE_WORKOUT, payload: res.data });
 
-    history.push("/");
+    history.push("/workouts");
   } catch (err) {
     console.log("ERROR", err);
   }
