@@ -1,4 +1,4 @@
-const { validate } = require("../models/Workout");
+const { validate } = require("../models/WorkoutModel");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");

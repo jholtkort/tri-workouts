@@ -52,7 +52,7 @@ const workoutSchema = new mongoose.Schema({
   }
 });
 
-const Workout = mongoose.model("Workout", workoutSchema);
+mongoose.model("Workout", workoutSchema);
 
 function validateWorkout(workout) {
   const schema = Joi.object({
