@@ -2,6 +2,10 @@ const Joi = require("@hapi/joi");
 const mongoose = require("mongoose");
 
 const workoutSchema = new mongoose.Schema({
+  _user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   description: {
     type: String,
     minlength: 5,
@@ -84,5 +88,5 @@ function validateWorkout(workout) {
   return schema.validate(workout);
 }
 
-exports.Workout = Workout;
+// exports.Workout = Workout;
 exports.validate = validateWorkout;

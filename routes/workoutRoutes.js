@@ -1,9 +1,12 @@
-const { validate, Workout } = require("../models/workout");
+const { validate } = require("../models/Workout");
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
+
+const Workout = mongoose.model("Workout");
 
 router.get("/", async (req, res) => {
-  const workouts = await Workout.find().sort("date");
+  const workouts = await Workout.find({ _user: req.user.id }).sort("-date");
   res.send(workouts);
 });
 
@@ -12,6 +15,7 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   let workout = new Workout({
+    _user: req.user.id,
     description: req.body.description,
     date: req.body.date,
     type: req.body.type,
