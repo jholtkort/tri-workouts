@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 
 import "./Header.css";
+import { logoutUser } from "../actions/index";
 
 class Header extends Component {
   state = {
@@ -24,7 +25,7 @@ class Header extends Component {
   };
 
   renderContent = () => {
-    switch (this.props.auth) {
+    switch (this.props.auth.isAuthenticated) {
       case null:
         return;
       case false:
@@ -69,7 +70,9 @@ class Header extends Component {
               <NavLink href="/create">Add Workout</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/auth/logout">Logout</NavLink>
+              <NavLink onClick={this.props.logoutUser} href="/auth/logout">
+                Logout
+              </NavLink>
             </NavItem>
           </div>
         );
@@ -80,7 +83,9 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href={this.props.auth ? "/workouts" : "/"}>
+          <NavbarBrand
+            href={this.props.auth.isAuthenticated ? "/workouts" : "/"}
+          >
             Tri Workouts
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -101,4 +106,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { logoutUser })(Header);

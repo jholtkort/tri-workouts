@@ -6,6 +6,7 @@ import { fetchUser } from "../actions/index";
 
 import "./App.css";
 import Header from "./Header";
+import PrivateRoute from "./PrivateRoute";
 import Landing from "./Landing";
 import WorkoutList from "./workouts/WorkoutList";
 import WorkoutCreate from "./workouts/WorkoutCreate";
@@ -25,10 +26,10 @@ class App extends Component {
         <div className="main-app my-5">
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path="/workouts" component={WorkoutList} />
-            <Route exact path="/create" component={WorkoutCreate} />
-            <Route exact path="/update/:id" component={WorkoutUpdate} />
-            <Route component={NotFound} />
+            <PrivateRoute exact path="/workouts" component={WorkoutList} />
+            <PrivateRoute exact path="/create" component={WorkoutCreate} />
+            <PrivateRoute exact path="/update/:id" component={WorkoutUpdate} />
+            {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </div>
       </Router>
