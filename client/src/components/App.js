@@ -8,7 +8,7 @@ import "./App.css";
 import Header from "./Header";
 import PrivateRoute from "./PrivateRoute";
 import Landing from "./Landing";
-import WorkoutList from "./workouts/WorkoutList";
+import Dashboard from "./Dashboard";
 import WorkoutCreate from "./workouts/WorkoutCreate";
 import WorkoutUpdate from "./workouts/WorkoutUpdate";
 import NotFound from "./NotFound";
@@ -26,7 +26,7 @@ class App extends Component {
         <div className="main-app my-5">
           <Switch>
             <Route exact path="/" component={Landing} />
-            <PrivateRoute exact path="/workouts" component={WorkoutList} />
+            <PrivateRoute exact path="/workouts" component={Dashboard} />
             <PrivateRoute exact path="/create" component={WorkoutCreate} />
             <PrivateRoute exact path="/update/:id" component={WorkoutUpdate} />
             <Route path="*" component={NotFound} />
