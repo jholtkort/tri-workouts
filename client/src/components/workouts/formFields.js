@@ -43,7 +43,7 @@ export const renderSelectField = ({
 export const renderDateField = ({ input: { onChange, value }, showTime }) => (
   <DateTimePicker
     onChange={onChange}
-    format="DD MMM YYYY"
+    // format="DD MMM YYYY"
     time={showTime}
     value={!value ? null : new Date(value)}
   />
@@ -57,7 +57,7 @@ export const renderNumberField = ({
   return (
     <Fragment>
       <Input type="number" className="form-control" {...input} />
-      {label}
+      <div>{label}</div>
       <span className="error">{touched && error}</span>
     </Fragment>
   );
