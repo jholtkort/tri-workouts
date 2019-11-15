@@ -27,8 +27,16 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <PrivateRoute exact path="/workouts" component={Dashboard} />
-            <PrivateRoute exact path="/create" component={WorkoutCreate} />
-            <PrivateRoute exact path="/update/:id" component={WorkoutUpdate} />
+            <PrivateRoute
+              exact
+              path="/workouts/create"
+              component={WorkoutCreate}
+            />
+            <PrivateRoute
+              exact
+              path="/workouts/update/:id"
+              component={WorkoutUpdate}
+            />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
