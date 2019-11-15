@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { reduxForm, Field } from "redux-form";
 import _ from "lodash";
-import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Col, Row, Button, Form, FormGroup, Label } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import moment from "moment";
 
 import {
   renderTextField,
@@ -17,9 +16,7 @@ const WORKOUT_TYPES = ["swim", "bike", "run"];
 const DISTANCE_UNITS = ["m", "km", "yd", "mi"];
 
 const WorkoutForm = props => {
-  const { handleSubmit, pristine, reset, submitting, classes } = props;
-
-  console.log(props.initialValues);
+  const { handleSubmit, pristine, reset, submitting } = props;
 
   return (
     <div className="mx-5">
