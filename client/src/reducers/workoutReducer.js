@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   workouts: [],
+  workout: [],
   loading: false
 };
 
@@ -33,7 +34,7 @@ export default (state = initialState, action) => {
     case GET_WORKOUT_BY_ID:
       return {
         ...state,
-        workouts: action.payload
+        workout: action.payload
       };
     case UPDATE_WORKOUT:
       return {

@@ -82,7 +82,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar color="dark" dark expand="sm">
           <NavbarBrand
             href={this.props.auth.isAuthenticated ? "/workouts" : "/"}
           >

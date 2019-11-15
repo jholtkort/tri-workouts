@@ -31,7 +31,13 @@ class Workout extends Component {
             </Link>
           </CardTitle>
           <CardSubtitle className="mb-2 text-muted">
-            <Moment format="MM/DD/YYYY">{this.props.workout.date}</Moment>
+            <Moment className="mr-1" format="MM/DD/YYYY">
+              {this.props.workout.date}
+            </Moment>
+            at
+            <span className="ml-1">
+              <Moment format="h:mm a">{this.props.workout.date}</Moment>
+            </span>
           </CardSubtitle>
 
           <CardText className="workout-stats">
@@ -50,7 +56,4 @@ class Workout extends Component {
   }
 }
 
-export default connect(
-  null,
-  { deleteWorkout }
-)(Workout);
+export default connect(null, { deleteWorkout })(Workout);
