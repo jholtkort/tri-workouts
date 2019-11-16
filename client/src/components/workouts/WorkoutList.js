@@ -34,7 +34,9 @@ class WorkoutList extends Component {
         if (!workouts.length) {
           return (
             <h3>
-              <Link to="/create">Hello, please add workouts</Link>
+              <Link style={{ color: "#000" }} to="/create">
+                Please add workouts
+              </Link>
             </h3>
           );
         }
