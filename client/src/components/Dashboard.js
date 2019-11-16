@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Container } from "reactstrap";
 
 import WorkoutList from "./workouts/WorkoutList";
 
@@ -15,7 +16,7 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <div>
+      <Container>
         {this.renderGreeting()}
         <WorkoutList />
         <div className="fixed-action-btn">
@@ -23,7 +24,7 @@ class Dashboard extends Component {
             <i className="material-icons">add</i>
           </Link>
         </div>
-      </div>
+      </Container>
     );
   }
 }
