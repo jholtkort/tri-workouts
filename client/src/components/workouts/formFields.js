@@ -43,9 +43,8 @@ export const renderSelectField = ({
 export const renderDateField = ({ input: { onChange, value }, showTime }) => (
   <DateTimePicker
     onChange={onChange}
-    // format="DD MMM YYYY"
     time={showTime}
-    value={!value ? null : new Date(value)}
+    value={!value ? new Date() : new Date(value)}
   />
 );
 
