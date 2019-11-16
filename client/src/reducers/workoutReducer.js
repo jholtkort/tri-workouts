@@ -19,6 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         workouts: action.payload,
+        workout: [],
         loading: false
       };
     case WORKOUTS_LOADING:

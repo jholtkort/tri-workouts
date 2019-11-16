@@ -29,8 +29,8 @@ export const renderSelectField = ({
       <Input type="select" {...input} className="form-control">
         {_.map(options, option => {
           return (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           );
         })}
@@ -41,12 +41,13 @@ export const renderSelectField = ({
 };
 
 export const renderDateField = ({ input: { onChange, value }, showTime }) => (
-  <DateTimePicker
-    onChange={onChange}
-    // format="DD MMM YYYY"
-    time={showTime}
-    value={!value ? null : new Date(value)}
-  />
+  <Fragment>
+    <DateTimePicker
+      onChange={onChange}
+      time={showTime}
+      value={!value ? null : new Date(value)}
+    />
+  </Fragment>
 );
 
 export const renderNumberField = ({

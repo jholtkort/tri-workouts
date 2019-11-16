@@ -23,18 +23,7 @@ class UpdateWorkout extends Component {
     if (this.props.workout._id === this.props.match.params.id) {
       return (
         <div>
-          <WorkoutForm
-            onSubmit={this.onSubmit}
-            title="Update Workout"
-            // description={this.props.workout.description}
-            // date={this.props.workout.date}
-            // type={this.props.workout.type}
-            // distance={this.props.workout.distance}
-            // distanceUnits={this.props.workout.distanceUnits}
-            // hour={this.props.workout.hour}
-            // minute={this.props.workout.minute}
-            // second={this.props.workout.second}
-          />
+          <WorkoutForm onSubmit={this.onSubmit} title="Update Workout" />
         </div>
       );
     } else {
