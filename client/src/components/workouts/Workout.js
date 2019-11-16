@@ -21,35 +21,51 @@ class Workout extends Component {
   };
 
   render() {
+    const {
+      _id,
+      description,
+      date,
+      type,
+      distance,
+      distanceUnits,
+      hour,
+      minute,
+      second
+    } = this.props.workout;
+
     return (
       <Card>
         <CardBody>
-          <Button onClick={this.onDeleteClick}>Delete</Button>
           <CardTitle>
-            <Link to={`/update/${this.props.workout._id}`} id="workout-title">
-              {this.props.workout.description}
+            <Link to={`/workouts/update/${_id}`} id="workout-title">
+              {description}
             </Link>
           </CardTitle>
           <CardSubtitle className="mb-2 text-muted">
             <Moment className="mr-1" format="MM/DD/YYYY">
-              {this.props.workout.date}
+              {date}
             </Moment>
             at
             <span className="ml-1">
-              <Moment format="h:mm a">{this.props.workout.date}</Moment>
+              <Moment format="h:mm a">{date}</Moment>
             </span>
           </CardSubtitle>
 
           <CardText className="workout-stats">
-            <li className="pr-3 mr-3">{this.props.workout.type}</li>
+            <li className="pr-3 mr-3">{type}</li>
             <li className="pr-3 mr-3">
-              {this.props.workout.distance} {this.props.workout.distanceUnits}
+              {distance} {distanceUnits}
             </li>
             <li className="mr-3">
-              {this.props.workout.hour} hr {this.props.workout.minute} min{" "}
-              {this.props.workout.second} sec
+              {hour} hr {minute} min {second} sec
             </li>
           </CardText>
+          <Button
+            className="waves-effect waves-light btn red"
+            onClick={this.onDeleteClick}
+          >
+            <i className="material-icons">delete</i>
+          </Button>
         </CardBody>
       </Card>
     );
