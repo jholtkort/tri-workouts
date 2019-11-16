@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Row, Col } from "reactstrap";
 
 import { getWorkouts } from "../../actions/workoutActions";
 import Workout from "./Workout";
@@ -18,11 +19,11 @@ class WorkoutList extends Component {
   renderWorkouts = () => {
     return this.props.workout.workouts.map(workout => {
       return (
-        <Workout
-          workout={workout}
-          key={workout._id}
-          onDeleteClick={this.onDeleteClick}
-        />
+        <Row key={workout._id}>
+          <Col sm="12" md={{ size: 4, offset: 4 }}>
+            <Workout workout={workout} onDeleteClick={this.onDeleteClick} />
+          </Col>
+        </Row>
       );
     });
   };
@@ -46,13 +47,7 @@ class WorkoutList extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <div className="container">
-          {this.renderContent(this.props.workout)}
-        </div>
-      </div>
-    );
+    return <div>{this.renderContent(this.props.workout)}</div>;
   }
 }
 
