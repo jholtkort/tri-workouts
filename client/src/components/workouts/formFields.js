@@ -45,7 +45,7 @@ export const renderDateField = ({ input: { onChange, value }, showTime }) => (
     <DateTimePicker
       onChange={onChange}
       time={showTime}
-      value={!value ? new Date() : new Date(value)}
+      value={!value ? null : new Date(value)}
     />
   </Fragment>
 );
