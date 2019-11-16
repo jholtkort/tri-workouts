@@ -20,7 +20,7 @@ class WorkoutList extends Component {
     return this.props.workout.workouts.map(workout => {
       return (
         <Row key={workout._id}>
-          <Col sm="12" md={{ size: 4, offset: 4 }}>
+          <Col xs="12" md={{ size: 6, offset: 4 }}>
             <Workout workout={workout} onDeleteClick={this.onDeleteClick} />
           </Col>
         </Row>
