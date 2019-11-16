@@ -8,7 +8,7 @@ const workoutSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    minlength: 5,
+    minlength: 4,
     maxlength: 255,
     required: true
   },
@@ -18,13 +18,13 @@ const workoutSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["swim", "bike", "run"],
+    enum: ["Swim", "Bike", "Run"],
     required: true
   },
   distance: {
     type: Number,
     min: 1,
-    max: 500,
+    max: 100000,
     required: true
   },
   distanceUnits: {
@@ -62,11 +62,11 @@ function validateWorkout(workout) {
       .required(),
     date: Joi.date().required(),
     type: Joi.string()
-      .pattern(/(swim|bike|run)/)
+      .pattern(/(Swim|Bike|Run)/)
       .required(),
     distance: Joi.number()
       .min(1)
-      .max(500)
+      .max(100000)
       .required(),
     distanceUnits: Joi.string()
       .pattern(/(mi|yd|km|m)/)
