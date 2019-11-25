@@ -12,15 +12,15 @@ describe("/api/workouts", () => {
     await server.close();
   });
 
-  describe("GET /", () => {
-    it("should return all the workouts", async () => {
-      const workouts = [{ name: "workout1" }];
+  // describe("GET /", () => {
+  //   // it("should return all the workouts", async () => {
+  //   //   const workouts = [{ name: "workout1" }];
 
-      const res = await request(server).get("api/genres");
+  //   //   const res = await request(server).get("api/genres");
 
-      console.log(res);
+  //   //   console.log(res);
 
-      //   expect(res.status).toBe(200);
-    });
-  });
+  //   //   //   expect(res.status).toBe(200);
+  //   // });
+  // });
 });
