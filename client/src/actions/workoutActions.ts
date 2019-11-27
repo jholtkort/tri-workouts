@@ -1,5 +1,7 @@
 import axios from "axios";
+import { Dispatch } from "redux";
 
+import { Workout } from "../types/workout/Workout";
 import {
   GET_WORKOUTS,
   CREATE_WORKOUT,
@@ -7,10 +9,12 @@ import {
   UPDATE_WORKOUT,
   DELETE_WORKOUT,
   WORKOUTS_LOADING
-} from "./types";
+} from "../types/workout/actions";
+import { AppActions } from "../types";
+
 import history from "../history";
 
-export const getWorkouts = () => async dispatch => {
+export const getWorkouts = () => async (dispatch: Dispatch<AppActions>) => {
   dispatch(setWorkoutsLoading());
 
   try {
@@ -25,7 +29,9 @@ export const getWorkouts = () => async dispatch => {
   }
 };
 
-export const createWorkout = formValues => async dispatch => {
+export const createWorkout = (formValues: Workout) => async (
+  dispatch: Dispatch<AppActions>
+) => {
   try {
     const res = await axios.post("/api/workouts", formValues);
 
@@ -40,7 +46,9 @@ export const createWorkout = formValues => async dispatch => {
   }
 };
 
-export const getWorkoutById = id => async dispatch => {
+export const getWorkoutById = (id: string) => async (
+  dispatch: Dispatch<AppActions>
+) => {
   try {
     const res = await axios.get(`/api/workouts/${id}`);
 
@@ -53,7 +61,9 @@ export const getWorkoutById = id => async dispatch => {
   }
 };
 
-export const updateWorkout = (id, formValues) => async dispatch => {
+export const updateWorkout = (id: string, formValues: Workout) => async (
+  dispatch: Dispatch<AppActions>
+) => {
   try {
     const res = await axios.put(`/api/workouts/${id}`, formValues);
 
@@ -65,7 +75,9 @@ export const updateWorkout = (id, formValues) => async dispatch => {
   }
 };
 
-export const deleteWorkout = id => async dispatch => {
+export const deleteWorkout = (id: string) => async (
+  dispatch: Dispatch<AppActions>
+) => {
   try {
     await axios.delete(`/api/workouts/${id}`);
 
@@ -75,7 +87,7 @@ export const deleteWorkout = id => async dispatch => {
   }
 };
 
-export const setWorkoutsLoading = () => {
+export const setWorkoutsLoading = (): AppActions => {
   return {
     type: WORKOUTS_LOADING
   };
