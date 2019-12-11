@@ -6,8 +6,15 @@ import {
   DELETE_WORKOUT,
   WORKOUTS_LOADING
 } from "../actions/types";
+import { Workout } from "../types/workout/Workout";
 
-const initialState = {
+export interface WorkoutState {
+  workouts: Workout[];
+  workout: Workout;
+  loading: boolean;
+}
+
+const initialState: WorkoutState = {
   workouts: [],
   workout: [],
   loading: false

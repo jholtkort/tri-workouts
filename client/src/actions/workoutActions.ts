@@ -18,7 +18,7 @@ export const getWorkouts = () => async (dispatch: Dispatch<AppActions>) => {
   dispatch(setWorkoutsLoading());
 
   try {
-    const res = await axios.get("/api/workouts");
+    const res = await axios.get<Workout[]>("/api/workouts");
 
     dispatch({
       type: GET_WORKOUTS,
@@ -33,7 +33,7 @@ export const createWorkout = (formValues: Workout) => async (
   dispatch: Dispatch<AppActions>
 ) => {
   try {
-    const res = await axios.post("/api/workouts", formValues);
+    const res = await axios.post<Workout>("/api/workouts", formValues);
 
     dispatch({
       type: CREATE_WORKOUT,
@@ -50,7 +50,7 @@ export const getWorkoutById = (id: string) => async (
   dispatch: Dispatch<AppActions>
 ) => {
   try {
-    const res = await axios.get(`/api/workouts/${id}`);
+    const res = await axios.get<Workout>(`/api/workouts/${id}`);
 
     dispatch({
       type: GET_WORKOUT_BY_ID,
@@ -65,7 +65,7 @@ export const updateWorkout = (id: string, formValues: Workout) => async (
   dispatch: Dispatch<AppActions>
 ) => {
   try {
-    const res = await axios.put(`/api/workouts/${id}`, formValues);
+    const res = await axios.put<Workout>(`/api/workouts/${id}`, formValues);
 
     dispatch({ type: UPDATE_WORKOUT, payload: res.data });
 
@@ -79,7 +79,7 @@ export const deleteWorkout = (id: string) => async (
   dispatch: Dispatch<AppActions>
 ) => {
   try {
-    await axios.delete(`/api/workouts/${id}`);
+    await axios.delete<Workout>(`/api/workouts/${id}`);
 
     dispatch({ type: DELETE_WORKOUT, payload: id });
   } catch (err) {

@@ -1,5 +1,13 @@
 import { FETCH_USER, LOGOUT_USER } from "../actions/types";
 
+export interface AuthState {
+  isAuthenticated: boolean;
+  loading: boolean;
+  _id: string;
+  googleId: number;
+  name: string;
+}
+
 const initialState = {
   isAuthenticated: false,
   loading: true,
